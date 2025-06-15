@@ -28,9 +28,20 @@ public class FirstPersonController : MonoBehaviour
 
         controller.Move(move * moveSpeed * Time.deltaTime);
 
-        // Aggiorna parametro Speed per animazioni
+        // Aggiorna parametro Speed e IsCrounching per animazioni
         float currentSpeed = new Vector3(controller.velocity.x, 0, controller.velocity.z).magnitude;
         animator.SetFloat("Speed", currentSpeed);
+        bool isCrouching = Input.GetKey(KeyCode.C);
+        animator.SetBool("IsCrouching", Input.GetKey(KeyCode.C));
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("Crouch iniziato");
+        }
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            Debug.Log("Crouch terminato");
+        }
 
         // Mouse Look
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
