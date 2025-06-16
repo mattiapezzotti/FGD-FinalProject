@@ -8030,12 +8030,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.001, y: 1.727, z: 0.094}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.004, y: 1.706, z: 0.128}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 509343682}
+  m_Father: {fileID: 1019205308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -26058,6 +26058,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5047755396129329430, guid: 858f824f92c8a904ab91fb51c02959d8, type: 3}
   m_PrefabInstance: {fileID: 1018725133}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1019205307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1019205308}
+  m_Layer: 0
+  m_Name: CameraHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1019205308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019205307}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 330585546}
+  m_Father: {fileID: 509343682}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1023008337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29033,12 +29065,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 52c8baba29261447a82f3bb0f495266e, type: 2}
     - target: {fileID: 9015651193053095870, guid: 1c8950e890f8de640b645d9ccc90ffa4, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'Hips'\n\tTransform 'Neck'\n\tTransform 'Spine1'\n\tTransform
-        'LeftForeArm'\n\tTransform 'LeftShoulder'\n\tTransform 'RightUpLeg'\n\tTransform
-        'LeftHand'\n\tTransform 'RightArm'\n\tTransform 'LeftUpLeg'\n\tTransform
-        'LeftLeg'\n\tand more ...\n\tFrom animation clip 'SneakWalking'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9015651193053095870, guid: 1c8950e890f8de640b645d9ccc90ffa4, type: 3}
       propertyPath: m_ApplyRootMotion
@@ -29049,7 +29076,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5324235090848287527, guid: 1c8950e890f8de640b645d9ccc90ffa4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 330585546}
+      addedObject: {fileID: 1019205308}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c8950e890f8de640b645d9ccc90ffa4, type: 3}
 --- !u!1001 &1141991609
@@ -50806,7 +50833,7 @@ MonoBehaviour:
   runningMoveSpeed: 4
   crouchingMoveSpeed: 1
   mouseSensitivity: 2
-  cameraTransform: {fileID: 330585546}
+  cameraHolder: {fileID: 1019205308}
   animator: {fileID: 998977883}
 --- !u!143 &1948810773
 CharacterController:
@@ -50826,8 +50853,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.7
-  m_Radius: 0.38
+  m_Height: 2
+  m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

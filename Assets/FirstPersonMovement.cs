@@ -7,12 +7,22 @@ public class FirstPersonController : MonoBehaviour
     public float runningMoveSpeed;
     public float crouchingMoveSpeed;
     private float currentMoveSpeed = 2f;
+
+
     public float mouseSensitivity = 2f;
-    public Transform cameraTransform;
-    public Animator animator;  // Riferimento all'Animator del personaggio
+    public Transform cameraHolder;
+    public Animator animator;
 
     private CharacterController controller;
     private float verticalRotation = 0f;
+    private bool isCrouching = false;
+
+
+    // Collider settings
+    private float standingHeight = 2f;
+    private float crouchingHeight = 1.2f;
+    private Vector3 standingCenter = new Vector3(0f, 0f, 0f);
+    private Vector3 crouchingCenter = new Vector3(0f, -0.8f, 0.2f);
 
     void Start()
     {
@@ -47,24 +57,33 @@ public class FirstPersonController : MonoBehaviour
         // Aggiorna parametro Speed e IsCrounching per animazioni
         float currentSpeed = new Vector3(controller.velocity.x, 0, controller.velocity.z).magnitude;
         animator.SetFloat("Speed", currentSpeed);
-        bool isCrouching = Input.GetKey(KeyCode.C);
-        animator.SetBool("IsCrouching", Input.GetKey(KeyCode.C));
+        animator.SetBool("IsCrouching", isCrouching);
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Debug.Log("Crouch iniziato");
-        }
-        if (Input.GetKeyUp(KeyCode.C))
-        {
-            Debug.Log("Crouch terminato");
+            isCrouching = !isCrouching;
+
+            if (isCrouching)
+            {
+                controller.height = crouchingHeight;
+                controller.center = crouchingCenter;
+                currentMoveSpeed = crouchingMoveSpeed;
+            }
+            else
+            {
+                controller.height = standingHeight;
+                controller.center = standingCenter;
+                currentMoveSpeed = walkingMoveSpeed;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isCrouching)
         {
             Run();
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) && !isCrouching)
         {
             Walk();
         }
@@ -77,6 +96,9 @@ public class FirstPersonController : MonoBehaviour
 
         verticalRotation -= mouseY;
         verticalRotation = Mathf.Clamp(verticalRotation, -90f, 50f);
-        cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
+        cameraHolder.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
+        
+        Vector3 targetPosition = isCrouching ? crouchingCenter : standingCenter;
+        cameraHolder.localPosition = Vector3.Lerp(cameraHolder.localPosition, targetPosition, Time.deltaTime * 10f);
     }
 }
