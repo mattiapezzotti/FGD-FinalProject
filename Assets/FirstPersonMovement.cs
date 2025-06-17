@@ -17,12 +17,19 @@ public class FirstPersonController : MonoBehaviour
     private float verticalRotation = 0f;
     private bool isCrouching = false;
 
+    private Vector3 velocity;
+    private float gravity = -9.81f;
+
 
     // Collider settings
-    private float standingHeight = 2f;
-    private float crouchingHeight = 1.2f;
-    private Vector3 standingCenter = new Vector3(0f, 0f, 0f);
-    private Vector3 crouchingCenter = new Vector3(0f, -0.8f, 0.2f);
+    private readonly float standingHeight = 2f;
+    private readonly float crouchingHeight = 1.2f;
+    private Vector3 standingCameraPosition = new (0f, -0.2f, 0.2f);
+    private Vector3 crouchingCameraPosition = new (0f, -0.8f, 0.2f);
+
+    private Vector3 standingCenterPosition = new (0f, -0.8f, 0.0f);
+    private Vector3 crouchingCenterPosition = new (0f, -1.1f, 0.0f);
+
 
     void Start()
     {
@@ -54,6 +61,17 @@ public class FirstPersonController : MonoBehaviour
 
         controller.Move(currentMoveSpeed * Time.deltaTime * move);
 
+        if (controller.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+        else
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
+
+        controller.Move(velocity * Time.deltaTime);
+
         // Aggiorna parametro Speed e IsCrounching per animazioni
         float currentSpeed = new Vector3(controller.velocity.x, 0, controller.velocity.z).magnitude;
         animator.SetFloat("Speed", currentSpeed);
@@ -66,13 +84,13 @@ public class FirstPersonController : MonoBehaviour
             if (isCrouching)
             {
                 controller.height = crouchingHeight;
-                controller.center = crouchingCenter;
+                controller.center = crouchingCenterPosition;
                 currentMoveSpeed = crouchingMoveSpeed;
             }
             else
             {
                 controller.height = standingHeight;
-                controller.center = standingCenter;
+                controller.center = standingCenterPosition;
                 currentMoveSpeed = walkingMoveSpeed;
             }
         }
@@ -98,7 +116,7 @@ public class FirstPersonController : MonoBehaviour
         verticalRotation = Mathf.Clamp(verticalRotation, -90f, 50f);
         cameraHolder.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
         
-        Vector3 targetPosition = isCrouching ? crouchingCenter : standingCenter;
+        Vector3 targetPosition = isCrouching ? crouchingCameraPosition : standingCameraPosition;
         cameraHolder.localPosition = Vector3.Lerp(cameraHolder.localPosition, targetPosition, Time.deltaTime * 10f);
     }
 }
