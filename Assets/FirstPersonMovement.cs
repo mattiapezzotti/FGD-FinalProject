@@ -1,65 +1,121 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class FirstPersonController : MonoBehaviour
 {
-    public float walkingMoveSpeed;
-    public float runningMoveSpeed;
-    public float crouchingMoveSpeed;
-    private float currentMoveSpeed = 2f;
-
-
+    // Movements
+    public float walkMoveSpeed, runMoveSpeed, crouchMoveSpeed, crouchRunMoveSpeed;
+    private float currentMoveSpeed;
     public float mouseSensitivity = 2f;
-    public Transform cameraHolder;
-    public Animator animator;
-
-    private CharacterController controller;
     private float verticalRotation = 0f;
     private bool isCrouching = false;
+    private float moveX, moveZ, mouseX, mouseY, currentSpeed;
 
+    // Dependencies
+    public GameObject character;
+    public Transform cameraHolder;
+    private Animator animator;
+    private CharacterController controller;
+    
+    // Gravity
     private Vector3 velocity;
-    private float gravity = -9.81f;
+    private readonly float gravity = -9.81f;
 
-
-    // Collider settings
-    private readonly float standingHeight = 2f;
-    private readonly float crouchingHeight = 1.2f;
-    private Vector3 standingCameraPosition = new (0f, -0.2f, 0.2f);
-    private Vector3 crouchingCameraPosition = new (0f, -0.8f, 0.2f);
-
-    private Vector3 standingCenterPosition = new (0f, -0.8f, 0.0f);
-    private Vector3 crouchingCenterPosition = new (0f, -1.1f, 0.0f);
+    // Collider
+    public float standingHeight, crouchingHeight;
+    private Vector3 standingCameraPosition = new (0f, 1.5f, 0.2f);
+    private Vector3 crouchingCameraPosition = new (0f, 1f, 0.2f);
+    private Vector3 standingCenterPosition = new (0f, 0.9f, 0.0f);
+    private Vector3 crouchingCenterPosition = new (0f, 0.6f, 0.0f);
 
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        animator = character.GetComponent<Animator>();
 
-        Walk();
+        isCrouching = false;
+        ToWalkState();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    void Run()
+    void CheckState()
     {
-        currentMoveSpeed = runningMoveSpeed;
+        animator.SetBool("IsCrouching", isCrouching);
+
+        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            if (isCrouching)
+            {
+                ToWalkState();
+            }
+            else
+            {
+                ToCrouchState();
+            }
+        }
+
+        
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if (isCrouching)
+            {
+                ToCrouchRunState();
+            }
+            else
+            {
+                ToRunState();
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            if (isCrouching)
+            {
+                ToCrouchState();
+            }
+            else
+            {
+                ToWalkState();
+            }
+        }
     }
 
-    void Walk()
+    void ToCrouchState()
     {
-        currentMoveSpeed = walkingMoveSpeed;
+        controller.height = crouchingHeight;
+        controller.center = crouchingCenterPosition;
+        currentMoveSpeed = crouchMoveSpeed;
+        isCrouching = true;
     }
 
-    void Update()
+    void ToCrouchRunState()
     {
-        // Movimento
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
+        currentMoveSpeed = crouchRunMoveSpeed;
+    }
+
+    void ToRunState()
+    {
+        currentMoveSpeed = runMoveSpeed;
+    }
+
+    void ToWalkState()
+    {
+        controller.height = standingHeight;
+        controller.center = standingCenterPosition;
+        currentMoveSpeed = walkMoveSpeed;
+        isCrouching = false;
+    }
+
+    void Move()
+    {
+        moveX = Input.GetAxis("Horizontal");
+        moveZ = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
 
-        controller.Move(currentMoveSpeed * Time.deltaTime * move);
+        Vector3 horizontalMove = move * currentMoveSpeed;
 
         if (controller.isGrounded && velocity.y < 0)
         {
@@ -70,53 +126,35 @@ public class FirstPersonController : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
         }
 
-        controller.Move(velocity * Time.deltaTime);
+        Vector3 totalMove = horizontalMove;
+        totalMove.y = velocity.y;
 
-        // Aggiorna parametro Speed e IsCrounching per animazioni
-        float currentSpeed = new Vector3(controller.velocity.x, 0, controller.velocity.z).magnitude;
+        controller.Move(totalMove * Time.deltaTime);
+
+        Vector3 horizontalVelocity = new (controller.velocity.x, 0, controller.velocity.z);
+        currentSpeed = horizontalVelocity.magnitude;
         animator.SetFloat("Speed", currentSpeed);
-        animator.SetBool("IsCrouching", isCrouching);
+    }
 
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            isCrouching = !isCrouching;
-
-            if (isCrouching)
-            {
-                controller.height = crouchingHeight;
-                controller.center = crouchingCenterPosition;
-                currentMoveSpeed = crouchingMoveSpeed;
-            }
-            else
-            {
-                controller.height = standingHeight;
-                controller.center = standingCenterPosition;
-                currentMoveSpeed = walkingMoveSpeed;
-            }
-        }
-
-        
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isCrouching)
-        {
-            Run();
-        }
-
-        if (Input.GetKeyUp(KeyCode.LeftShift) && !isCrouching)
-        {
-            Walk();
-        }
-
-        // Mouse Look
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+    void MouseLook()
+    {
+        mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
         transform.Rotate(Vector3.up * mouseX);
 
         verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -90f, 50f);
+        verticalRotation = Mathf.Clamp(verticalRotation, -75f, 75f);
         cameraHolder.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
         
         Vector3 targetPosition = isCrouching ? crouchingCameraPosition : standingCameraPosition;
         cameraHolder.localPosition = Vector3.Lerp(cameraHolder.localPosition, targetPosition, Time.deltaTime * 10f);
+    }
+
+    void Update()
+    {
+        Move();
+        MouseLook();
+        CheckState();
     }
 }
