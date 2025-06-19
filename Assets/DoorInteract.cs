@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class DoorInteract : MonoBehaviour, IInteractable
 {
-    private readonly float yPortaFinale = 190.0f, velocità = 2f;
+    private readonly float velocità = 2f;
+    public float yPortaFinale;
 
     private Quaternion rotazioneFinalePorta;
-    private readonly string keyID = "BaseStairsKey";
+    public string keyID;
     private Outline outline;
 
     private bool attiva = false;
@@ -23,6 +24,7 @@ public class DoorInteract : MonoBehaviour, IInteractable
         {
             attiva = true;
             outline.OutlineWidth = 0;
+            Inventory.inventory.RemoveItem(keyID);
         }
         else
         {

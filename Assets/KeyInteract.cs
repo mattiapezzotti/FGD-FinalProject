@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class KeyInteract : MonoBehaviour, IInteractable
 {
-    private readonly string id = "BaseStairsKey";
+    public string keyID;
+
     private Outline outline;
 
     void Start()
@@ -15,7 +16,7 @@ public class KeyInteract : MonoBehaviour, IInteractable
     public void Interact()
     {
         gameObject.SetActive(false);
-        Inventory.inventory.AddItem(id);
+        Inventory.inventory.AddItem(keyID);
     }
 
     public void DrawOutline(bool b)

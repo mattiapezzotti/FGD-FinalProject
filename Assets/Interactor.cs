@@ -10,14 +10,9 @@ public class Interactor : MonoBehaviour
 {
     public Transform source;
     public float range;
-    public Ray r;
-    public RaycastHit hit;
-    public IInteractable lastHit;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private Ray r;
+    private RaycastHit hit;
+    private IInteractable lastHit;
 
     // Update is called once per frame
     void Update()
@@ -54,7 +49,7 @@ public class Interactor : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
         {
 
             if (Physics.Raycast(r, out hit, range))
