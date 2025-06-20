@@ -20,7 +20,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.1
+  m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.33598742
   m_HasExitTime: 0
@@ -104,7 +104,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.1
+  m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.2972087
   m_HasExitTime: 0
@@ -134,7 +134,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 4048e0a9f0a514b5785a513baa8c5062, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 33ed45ffef2468446909860ba307555b, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -148,7 +148,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CrouchWalking
-  m_Speed: 0.5
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -5912755714746180867}
@@ -162,7 +162,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: f52e74598859a46948c8a522a3c46f7f, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 33be07ebd3e385e48b5955248dccbdf2, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -190,7 +190,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: a7656c6840a6e479db77383854cfe6d3, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 162f64fce396500498c8c43f65670d32, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -252,7 +252,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Base Layer
     m_StateMachine: {fileID: -518009725111181057}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 1d084b459ab535b4e947fdeb1e4a2b17, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -281,7 +281,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.1
+  m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.29363436
   m_HasExitTime: 0
@@ -309,7 +309,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.10000005
+  m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.13667738
   m_HasExitTime: 0
@@ -365,7 +365,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.100000024
+  m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.35207248
   m_HasExitTime: 0
@@ -393,7 +393,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.099999934
+  m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.1367712
   m_HasExitTime: 0
