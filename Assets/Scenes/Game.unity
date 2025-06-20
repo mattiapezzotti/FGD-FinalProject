@@ -27158,16 +27158,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 18499657}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1583fb7858dfa2b4c97b33d8d7c96879, type: 3}
+  m_Script: {fileID: 11500000, guid: 68a0a30247ab39c479c4f092906a25e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footstepsAudioSource: {fileID: 1115076263}
-  footstepsClips:
+  audioSource: {fileID: 1115076263}
+  stoneFootstepsClips:
   - {fileID: 8300000, guid: d602aef300d683a4d9ba2fd4f9a2345d, type: 3}
   - {fileID: 8300000, guid: 388aae175ffacba40bbd105c16c329c6, type: 3}
   - {fileID: 8300000, guid: 7c9f134bdb509c641ab1416b109ef117, type: 3}
   - {fileID: 8300000, guid: 2dcb36c3aaf4c664889ce0a28d71819b, type: 3}
+  - {fileID: 8300000, guid: 4efcd52c3b9a9554491b3e6f5ab9b264, type: 3}
   - {fileID: 8300000, guid: 5ca82b22214537b41840fba68a06759b, type: 3}
+  woodFootstepsClips:
+  - {fileID: 8300000, guid: c578f9755c747d84caffbdbb27f4c9dc, type: 3}
+  - {fileID: 8300000, guid: 82f19befa3b9c6146a7087e978cc1bce, type: 3}
+  outsideFootstepsClips:
+  - {fileID: 8300000, guid: 2e8c207037a59fd4b93f8d7f8f8fbab9, type: 3}
+  - {fileID: 8300000, guid: a18dcf19e3a931c4b934b4fffee11a52, type: 3}
+  - {fileID: 8300000, guid: 914cdc0f14a446e4a8c39be4a7771f18, type: 3}
 --- !u!1001 &999257805
 PrefabInstance:
   m_ObjectHideFlags: 0
