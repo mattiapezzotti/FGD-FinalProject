@@ -2,6 +2,7 @@ using UnityEngine;
 public interface IMarkable
 {
     public void MarkEnemy();
+    public bool IsOnCooldown();
 }
 
 public class Markator : MonoBehaviour
@@ -11,10 +12,11 @@ public class Markator : MonoBehaviour
     private Ray r;
     private RaycastHit hit;
     private Animator animator;
-
+    private VoiceLines voicelines;
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        voicelines = GetComponentInChildren<VoiceLines>();
     }
 
     // Update is called once per frame
@@ -29,10 +31,16 @@ public class Markator : MonoBehaviour
             {
                 if (hit.collider.gameObject.TryGetComponent(out IMarkable interacted))
                 {
-                    animator.SetTrigger("Mark");
-                    interacted.MarkEnemy();
+                    if (!interacted.IsOnCooldown())
+                    {
+                        voicelines.PlayGuardVoiceline();
+                        animator.SetTrigger("Mark");
+                        interacted.MarkEnemy();
+                    }
+
                 }
             }
         }
     }
+    
 }

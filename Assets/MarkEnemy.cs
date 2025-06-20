@@ -9,7 +9,7 @@ public class Mark : MonoBehaviour, IMarkable
     private Coroutine markDurationCoroutine;
     public Color originalColor;
     public Color endColor;
-    private Animator animator;
+    private bool onCooldown;
     private readonly float markDuration = 10.0f;
     private readonly float markCooldown = 2.0f;
 
@@ -17,6 +17,7 @@ public class Mark : MonoBehaviour, IMarkable
     {
         outline = GetComponent<Outline>();
         outline.enabled = false;
+        onCooldown = false;
     }
 
     public void MarkEnemy()
@@ -25,8 +26,6 @@ public class Mark : MonoBehaviour, IMarkable
         {
             return;
         }
-
-        Debug.Log("Enemy Marked!");
 
         if (markDurationCoroutine != null)
         {
@@ -41,8 +40,10 @@ public class Mark : MonoBehaviour, IMarkable
 
     IEnumerator MarkCooldown()
     {
+        onCooldown = true;
         yield return new WaitForSeconds(markCooldown);
         markCooldownCoroutine = null;
+        onCooldown = false;
     }
 
     IEnumerator FadeMark()
@@ -60,5 +61,10 @@ public class Mark : MonoBehaviour, IMarkable
         outline.enabled = false;
         outline.OutlineColor = originalColor;
         markDurationCoroutine = null;
+    }
+
+    public bool IsOnCooldown()
+    {
+        return onCooldown;
     }
 }
