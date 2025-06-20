@@ -10,6 +10,12 @@ public class Markator : MonoBehaviour
     public float range;
     private Ray r;
     private RaycastHit hit;
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -23,6 +29,7 @@ public class Markator : MonoBehaviour
             {
                 if (hit.collider.gameObject.TryGetComponent(out IMarkable interacted))
                 {
+                    animator.SetTrigger("Mark");
                     interacted.MarkEnemy();
                 }
             }

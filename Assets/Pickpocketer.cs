@@ -11,6 +11,12 @@ public class Pickpocketer : MonoBehaviour
     public float range;
     private Ray r;
     private RaycastHit hit;
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -24,6 +30,7 @@ public class Pickpocketer : MonoBehaviour
             {
                 if (hit.collider.gameObject.TryGetComponent(out IPickpocketer interacted))
                 {
+                    animator.SetTrigger("Pickpocket");
                     interacted.Pickpocket();
                 }
             }

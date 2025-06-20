@@ -9,6 +9,7 @@ public class Mark : MonoBehaviour, IMarkable
     private Coroutine markDurationCoroutine;
     public Color originalColor;
     public Color endColor;
+    private Animator animator;
     private readonly float markDuration = 10.0f;
     private readonly float markCooldown = 2.0f;
 
