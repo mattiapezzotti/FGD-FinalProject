@@ -6,6 +6,7 @@ public class KeyInteract : MonoBehaviour, IInteractable
     public string keyID;
 
     private Outline outline;
+    public PlayerSounds audioSource;
 
     void Start()
     {
@@ -13,14 +14,15 @@ public class KeyInteract : MonoBehaviour, IInteractable
         outline.enabled = false;
     }
 
-    public void Interact()
-    {
-        gameObject.SetActive(false);
-        Inventory.inventory.AddItem(keyID);
-    }
-
     public void DrawOutline(bool b)
     {
         outline.enabled = b;
+    }
+
+    public void Interact()
+    {
+        audioSource.PlayPickUp();
+        gameObject.SetActive(false);
+        Inventory.inventory.AddItem(keyID);
     }
 }

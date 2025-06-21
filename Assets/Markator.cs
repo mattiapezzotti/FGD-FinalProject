@@ -12,11 +12,11 @@ public class Markator : MonoBehaviour
     private Ray r;
     private RaycastHit hit;
     private Animator animator;
-    private VoiceLines voicelines;
+    private PlayerSounds playerSounds;
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        voicelines = GetComponentInChildren<VoiceLines>();
+        playerSounds = GetComponentInChildren<PlayerSounds>();
     }
 
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class Markator : MonoBehaviour
                 {
                     if (!interacted.IsOnCooldown())
                     {
-                        voicelines.PlayGuardVoiceline();
+                        playerSounds.PlayGuardVoiceline();
                         animator.SetTrigger("Mark");
                         interacted.MarkEnemy();
                     }

@@ -12,9 +12,11 @@ public class Pickpocketer : MonoBehaviour
     private Ray r;
     private RaycastHit hit;
     private Animator animator;
+    private PlayerSounds playerSounds;
 
     void Start()
     {
+        playerSounds = GetComponentInChildren<PlayerSounds>();
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -30,6 +32,7 @@ public class Pickpocketer : MonoBehaviour
             {
                 if (hit.collider.gameObject.TryGetComponent(out IPickpocketer interacted))
                 {
+                    playerSounds.PlayPickUp();
                     animator.SetTrigger("Pickpocket");
                     interacted.Pickpocket();
                 }
