@@ -4,8 +4,8 @@ using UnityEngine.Rendering.UI;
 
 public class FollowState : State
 {
-    public FollowState(GameObject npc, Transform player, NavMeshAgent agent)
-        : base(npc, player, agent)
+    public FollowState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim)
+        : base(npc, player, agent, anim)
     {
         curentState = STATE.CHASE;
         // Set the chase speed for the NPC
@@ -16,7 +16,7 @@ public class FollowState : State
     public override void Enter()
     {
         Debug.Log("Entering FollowState: " + npc.name);
-        // Set an animation trigger for chasing
+        anim.SetTrigger("IsChasing");
         base.Enter();
     }
 
@@ -34,7 +34,7 @@ public class FollowState : State
             }
             else if (!CanSeePlayer())
             {
-                nextState = new PatrolState(npc, player, agent, true);
+                nextState = new PatrolState(npc, player, agent, anim, true);
                 stage = EVENT.EXIT;
             }
         }
@@ -43,7 +43,7 @@ public class FollowState : State
 
     public override void Exit()
     {
-        // Reset the animation trigger for chasing
+        anim.ResetTrigger("IsChasing");
         base.Exit();
     }
 }

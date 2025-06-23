@@ -5,7 +5,7 @@ public class AIController : MonoBehaviour
 {
 
     NavMeshAgent agent;
-    //Animator anim; // Uncomment if you have an Animator component
+    Animator anim; 
     public Transform player; // Reference to the player Transform
     State currentState;
 
@@ -14,8 +14,8 @@ public class AIController : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        //anim = GetComponent<Animator>(); // Uncomment if you have an Animator component
-        currentState = new IdleState(this.gameObject, player, agent);//da aggiungere anim
+        anim = GetComponent<Animator>(); 
+        currentState = new PatrolState(this.gameObject, player, agent, anim);//da aggiungere anim
     }
 
     // Update is called once per frame

@@ -6,16 +6,16 @@ public class IdleState : State
     private float idleDuration = 3f; // Durata in secondi
     private float idleTimer = 0f;
 
-    public IdleState(GameObject npc, Transform player, NavMeshAgent agent)
-        : base(npc, player, agent)
+    public IdleState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim)
+        : base(npc, player, agent, anim)
     {
         curentState = STATE.IDLE;
     }
 
     public override void Enter()
     {
-        //anim trrigger 
         Debug.Log("Entering IdleState: " + npc.name);
+        anim.SetTrigger("IsIdle");
         idleTimer = 0f; // Reset del timer ogni volta che si entra nello stato
         base.Enter();
     }
@@ -27,7 +27,7 @@ public class IdleState : State
         if (CanSeePlayer())
         {
             // If the NPC can see the player, switch to the follow state
-            nextState = new FollowState(npc, player, agent);
+            nextState = new FollowState(npc, player, agent, anim);
             stage = EVENT.EXIT;
         }
         else if (idleTimer < idleDuration)
@@ -38,7 +38,7 @@ public class IdleState : State
         
 
         // Dopo idleDuration secondi, puoi aggiungere qui la logica per cambiare stato
-        nextState = new PatrolState(npc, player, agent);
+        nextState = new PatrolState(npc, player, agent, anim);
         stage = EVENT.EXIT;
 
         
@@ -46,8 +46,7 @@ public class IdleState : State
 
     public override void Exit()
     {
-        //anim reset trigger
-
+        anim.ResetTrigger("IsIdle");
 
         base.Exit();
     }

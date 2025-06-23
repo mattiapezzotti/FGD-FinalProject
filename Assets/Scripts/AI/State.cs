@@ -20,6 +20,7 @@ public class State
     protected Transform player;
     protected State nextState;
     protected NavMeshAgent agent;
+    protected Animator anim;
     protected float patrolSpeed = 2f;
     protected float chaseSpeed = 4f;
 
@@ -28,11 +29,12 @@ public class State
  
     
 
-    public State(GameObject npc, Transform player, NavMeshAgent agent)
+    public State(GameObject npc, Transform player, NavMeshAgent agent, Animator anim)
     {
         this.npc = npc;
         this.player = player;
         this.agent = agent;
+        this.anim = anim;
         stage = EVENT.ENTER;
     }
 

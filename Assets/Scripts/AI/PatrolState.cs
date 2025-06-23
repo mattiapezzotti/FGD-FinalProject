@@ -5,8 +5,8 @@ using UnityEngine.AI;
 public class PatrolState : State
 {
     private bool fromChase; 
-    public PatrolState(GameObject npc, Transform player, NavMeshAgent agent, bool fromChase = false)
-        : base(npc, player, agent)
+    public PatrolState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim, bool fromChase = false)
+        : base(npc, player, agent, anim)
     {
         curentState = STATE.PATROL;
         // Set the patrol speed for the NPC
@@ -37,7 +37,7 @@ public class PatrolState : State
             GameEnviroment.Singleton.CurrentWaypointIndex = closestIndex;
 
         }
-        //set an animation trigger for patrolling
+        anim.SetTrigger("IsPatrolling");
         base.Enter();
     }
 
@@ -47,7 +47,7 @@ public class PatrolState : State
         if(CanSeePlayer())
         {
             // If the NPC can see the player, switch to the follow state
-            nextState = new FollowState(npc, player, agent);
+            nextState = new FollowState(npc, player, agent, anim);
             stage = EVENT.EXIT;
         }
         else if (!agent.hasPath)
@@ -63,7 +63,7 @@ public class PatrolState : State
         else if(agent.remainingDistance < 0.1f)
         {
             //GameEnviroment.Singleton.setWaypointIndex(npcNum, currentWaypointIndex);
-            nextState = new IdleState(npc, player, agent);
+            nextState = new IdleState(npc, player, agent, anim);
             stage = EVENT.EXIT;
         }
 
@@ -73,8 +73,7 @@ public class PatrolState : State
 
     public override void Exit()
     {
-        // Reset the animation trigger for patrolling
-        //anim reset trigger
+        anim.ResetTrigger("IsPatrolling");
         base.Exit();
     }
 }
