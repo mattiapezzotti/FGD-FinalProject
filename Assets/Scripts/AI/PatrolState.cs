@@ -4,40 +4,65 @@ using UnityEngine.AI;
 
 public class PatrolState : State
 {
-    int currentWaypointIndex = -1;
-    public PatrolState(GameObject npc, Transform player, NavMeshAgent agent)
+    private bool fromChase; 
+    public PatrolState(GameObject npc, Transform player, NavMeshAgent agent, bool fromChase = false)
         : base(npc, player, agent)
     {
         curentState = STATE.PATROL;
         // Set the patrol speed for the NPC
         agent.speed = patrolSpeed;
         agent.isStopped = false;
+        this.fromChase = fromChase;
+        // this.npcNum = npcNum;
+        // currentWaypointIndex = GameEnviroment.Singleton.getWaypointIndex(npcNum);
     }
 
     public override void Enter()
     {
-        currentWaypointIndex = GameEnviroment.Singleton.CurrentWaypointIndex;
+        Debug.Log("Entering PatrolState: " + fromChase);
+        if (fromChase)
+        {
+            float minDistance = Vector3.Distance(npc.transform.position, GameEnviroment.Singleton.WayPoints[0].transform.position);
+            int closestIndex = 0;
+
+            for(int i = 1; i < GameEnviroment.Singleton.WayPoints.Count; i++)
+            {
+                float distance = Vector3.Distance(npc.transform.position, GameEnviroment.Singleton.WayPoints[i].transform.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    closestIndex = i;
+                }
+            }
+            GameEnviroment.Singleton.CurrentWaypointIndex = closestIndex;
+
+        }
         //set an animation trigger for patrolling
-        Debug.Log("Entering Patrol State, starting at waypoint: " + GameEnviroment.Singleton.WayPoints[currentWaypointIndex].name);
         base.Enter();
     }
 
     public override void Update()
     {
-        if (!agent.hasPath)
+
+        if(CanSeePlayer())
         {
-            Debug.Log("entrato nel if " + currentWaypointIndex + " " + GameEnviroment.Singleton.CurrentWaypointIndex);
-            agent.SetDestination(GameEnviroment.Singleton.WayPoints[currentWaypointIndex].transform.position);
+            // If the NPC can see the player, switch to the follow state
+            nextState = new FollowState(npc, player, agent);
+            stage = EVENT.EXIT;
+        }
+        else if (!agent.hasPath)
+        {
+            agent.SetDestination(GameEnviroment.Singleton.WayPoints[GameEnviroment.Singleton.CurrentWaypointIndex].transform.position);
 
 
-            if (currentWaypointIndex >= GameEnviroment.Singleton.WayPoints.Count - 1)
+            if (GameEnviroment.Singleton.CurrentWaypointIndex >= GameEnviroment.Singleton.WayPoints.Count - 1)
                 GameEnviroment.Singleton.CurrentWaypointIndex = 0;
             else
-                GameEnviroment.Singleton.CurrentWaypointIndex = currentWaypointIndex + 1;
+                GameEnviroment.Singleton.CurrentWaypointIndex++;
         }
-        if(agent.remainingDistance < 0.1f)
+        else if(agent.remainingDistance < 0.1f)
         {
-            Debug.Log("Reached waypoint: " + GameEnviroment.Singleton.WayPoints[currentWaypointIndex].name);
+            //GameEnviroment.Singleton.setWaypointIndex(npcNum, currentWaypointIndex);
             nextState = new IdleState(npc, player, agent);
             stage = EVENT.EXIT;
         }

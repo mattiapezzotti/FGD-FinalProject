@@ -24,7 +24,7 @@ public class State
     protected float chaseSpeed = 4f;
 
     float visDistance = 10f;
-    float visAngle = 45f;
+    float visAngle = 30f;
  
     
 
@@ -55,5 +55,24 @@ public class State
                 return nextState;
         }
         return this;
+    }
+
+    public bool CanSeePlayer()
+    {
+        Vector3 directionToPlayer = player.position - npc.transform.position;
+        float angleToPlayer = Vector3.Angle(npc.transform.forward, directionToPlayer);
+
+        if (directionToPlayer.magnitude <= visDistance && angleToPlayer <= visAngle)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool CanHearPlayer()
+    {
+        // Implement hearing logic here, e.g., based on distance or noise level
+        // For now, we can return false as a placeholder
+        return false;
     }
 }

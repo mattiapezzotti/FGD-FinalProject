@@ -15,7 +15,7 @@ public class IdleState : State
     public override void Enter()
     {
         //anim trrigger 
-
+        Debug.Log("Entering IdleState: " + npc.name);
         idleTimer = 0f; // Reset del timer ogni volta che si entra nello stato
         base.Enter();
     }
@@ -24,11 +24,18 @@ public class IdleState : State
     {
         idleTimer += Time.deltaTime;
 
-        if (idleTimer < idleDuration)
+        if (CanSeePlayer())
+        {
+            // If the NPC can see the player, switch to the follow state
+            nextState = new FollowState(npc, player, agent);
+            stage = EVENT.EXIT;
+        }
+        else if (idleTimer < idleDuration)
         {
             // Rimani in idle, non fare nulla
             return;
         }
+        
 
         // Dopo idleDuration secondi, puoi aggiungere qui la logica per cambiare stato
         nextState = new PatrolState(npc, player, agent);

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//aggiungere un bool per quale guardia sta usando la classe?
 public class GameEnviroment
 {
     private static GameEnviroment instance;
