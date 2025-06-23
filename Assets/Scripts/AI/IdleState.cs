@@ -34,7 +34,7 @@ public class IdleState : State
         nextState = new PatrolState(npc, player, agent);
         stage = EVENT.EXIT;
 
-        base.Update();
+        
     }
 
     public override void Exit()

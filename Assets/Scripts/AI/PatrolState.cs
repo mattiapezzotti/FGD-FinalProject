@@ -16,23 +16,34 @@ public class PatrolState : State
 
     public override void Enter()
     {
-        currentWaypointIndex = 0;
+        currentWaypointIndex = GameEnviroment.Singleton.CurrentWaypointIndex;
         //set an animation trigger for patrolling
-
+        Debug.Log("Entering Patrol State, starting at waypoint: " + GameEnviroment.Singleton.WayPoints[currentWaypointIndex].name);
         base.Enter();
     }
 
     public override void Update()
     {
-        if (agent.remainingDistance > 0)
+        if (!agent.hasPath)
         {
-            if (currentWaypointIndex >= GameEnviroment.Singleton.WayPoints.Count - 1)
-                currentWaypointIndex = 0;
-            else
-                currentWaypointIndex++;
+            Debug.Log("entrato nel if " + currentWaypointIndex + " " + GameEnviroment.Singleton.CurrentWaypointIndex);
             agent.SetDestination(GameEnviroment.Singleton.WayPoints[currentWaypointIndex].transform.position);
+
+
+            if (currentWaypointIndex >= GameEnviroment.Singleton.WayPoints.Count - 1)
+                GameEnviroment.Singleton.CurrentWaypointIndex = 0;
+            else
+                GameEnviroment.Singleton.CurrentWaypointIndex = currentWaypointIndex + 1;
         }
-        base.Update();
+        if(agent.remainingDistance < 0.1f)
+        {
+            Debug.Log("Reached waypoint: " + GameEnviroment.Singleton.WayPoints[currentWaypointIndex].name);
+            nextState = new IdleState(npc, player, agent);
+            stage = EVENT.EXIT;
+        }
+
+
+
     }
 
     public override void Exit()

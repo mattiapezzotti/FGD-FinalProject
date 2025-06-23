@@ -5,10 +5,14 @@ public class GameEnviroment
 {
     private static GameEnviroment instance;
     private List<GameObject> wayPoints = new List<GameObject>();
+    private int currentWaypointIndex = 0;
     public List<GameObject> WayPoints
     {
         get { return wayPoints; }
     }
+
+    public int CurrentWaypointIndex { get { return currentWaypointIndex; } 
+        set { currentWaypointIndex = value; } }
 
     public static GameEnviroment Singleton
     {
@@ -17,7 +21,7 @@ public class GameEnviroment
             if (instance == null)
             {
                 instance = new GameEnviroment();
-                instance.WayPoints.AddRange(GameObject.FindGameObjectsWithTag("Waypoint"));
+                instance.WayPoints.AddRange(GameObject.FindGameObjectsWithTag("WayPoint"));
             }
             return instance;
         }

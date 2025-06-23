@@ -20,7 +20,7 @@ public class State
     protected Transform player;
     protected State nextState;
     protected NavMeshAgent agent;
-    protected float patrolSpeed;
+    protected float patrolSpeed = 2f;
     protected float chaseSpeed = 4f;
 
     float visDistance = 10f;
