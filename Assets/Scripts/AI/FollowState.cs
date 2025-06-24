@@ -4,8 +4,8 @@ using UnityEngine.Rendering.UI;
 
 public class FollowState : State
 {
-    public FollowState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim)
-        : base(npc, player, agent, anim)
+    public FollowState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim, int npcNum)
+        : base(npc, player, agent, anim, npcNum)
     {
         curentState = STATE.CHASE;
         // Set the chase speed for the NPC
@@ -34,7 +34,7 @@ public class FollowState : State
             }
             else if (!CanSeePlayer())
             {
-                nextState = new PatrolState(npc, player, agent, anim, true);
+                nextState = new PatrolState(npc, player, agent, anim, npcNum, true);
                 stage = EVENT.EXIT;
             }
         }

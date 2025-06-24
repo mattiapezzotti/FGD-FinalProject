@@ -8,14 +8,14 @@ public class AIController : MonoBehaviour
     Animator anim; 
     public Transform player; // Reference to the player Transform
     State currentState;
-
+    public int npcNum; // NPC number to differentiate between different NPCs
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>(); 
-        currentState = new PatrolState(this.gameObject, player, agent, anim);//da aggiungere anim
+        currentState = new PatrolState(this.gameObject, player, agent, anim, npcNum);//da aggiungere anim
     }
 
     // Update is called once per frame

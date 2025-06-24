@@ -6,8 +6,8 @@ public class IdleState : State
     private float idleDuration = 3f; // Durata in secondi
     private float idleTimer = 0f;
 
-    public IdleState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim)
-        : base(npc, player, agent, anim)
+    public IdleState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim, int npcNum)
+        : base(npc, player, agent, anim, npcNum)
     {
         curentState = STATE.IDLE;
     }
@@ -27,7 +27,7 @@ public class IdleState : State
         if (CanSeePlayer())
         {
             // If the NPC can see the player, switch to the follow state
-            nextState = new FollowState(npc, player, agent, anim);
+            nextState = new FollowState(npc, player, agent, anim, npcNum);
             stage = EVENT.EXIT;
         }
         else if (idleTimer < idleDuration)
@@ -38,7 +38,7 @@ public class IdleState : State
         
 
         // Dopo idleDuration secondi, puoi aggiungere qui la logica per cambiare stato
-        nextState = new PatrolState(npc, player, agent, anim);
+        nextState = new PatrolState(npc, player, agent, anim, npcNum);
         stage = EVENT.EXIT;
 
         
