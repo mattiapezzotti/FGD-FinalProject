@@ -14,7 +14,7 @@ public class State
         ENTER, UPDATE, EXIT
     };
 
-    public STATE curentState;
+    public STATE currentState;
     protected EVENT stage;
     protected GameObject npc;
     protected Transform player;
@@ -71,10 +71,11 @@ public class State
         return false;
     }
 
-    public bool CanHearPlayer()
+    public void HearSound(Vector3 position)
     {
-        // Implement hearing logic here, e.g., based on distance or noise level
-        // For now, we can return false as a placeholder
-        return false;
+        if (currentState != State.STATE.CHASE)
+        {
+            //nextState =  new InvestigeteState(npc, player, agent, anim, npcNum, position);
+        }
     }
 }

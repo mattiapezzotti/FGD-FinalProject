@@ -7,7 +7,7 @@ public class FollowState : State
     public FollowState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim)
         : base(npc, player, agent, anim)
     {
-        curentState = STATE.CHASE;
+        currentState = STATE.CHASE;
         // Set the chase speed for the NPC
         agent.speed = chaseSpeed;
         agent.isStopped = false;
