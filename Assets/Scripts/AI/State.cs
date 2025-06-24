@@ -6,7 +6,7 @@ public class State
 {
   public enum STATE
     {
-        IDLE, PATROL, CHASE
+        IDLE, PATROL, CHASE, INVESTIGATE
     };
 
     public enum EVENT
@@ -21,20 +21,23 @@ public class State
     protected State nextState;
     protected NavMeshAgent agent;
     protected Animator anim;
-    protected float patrolSpeed = 2f;
-    protected float chaseSpeed = 4f;
+    protected int npcNum; // NPC number to differentiate between different NPCs
+    protected float patrolSpeed = 2.5f;
+    protected float chaseSpeed = 3.5f;
+    protected float investigateSpeed = 2.0f; // Speed for investigating sounds
 
-    float visDistance = 10f;
+    float visDistance = 7f;
     float visAngle = 30f;
  
     
 
-    public State(GameObject npc, Transform player, NavMeshAgent agent, Animator anim)
+    public State(GameObject npc, Transform player, NavMeshAgent agent, Animator anim, int npcNum)
     {
         this.npc = npc;
         this.player = player;
         this.agent = agent;
         this.anim = anim;
+        this.npcNum = npcNum;
         stage = EVENT.ENTER;
     }
 
