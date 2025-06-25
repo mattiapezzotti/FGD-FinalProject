@@ -23,6 +23,16 @@ public class FollowState : State
         anim.SetTrigger("IsChasing");
         base.Enter();
         agent.SetDestination(player.position);
+
+        // Attiva l'ExclamationMark se presente tra i figli
+        Transform exclamation = npc.transform.Find("ExclamationMark");
+
+        // Se l'QuestionMark è attivo lo disattiva
+        Transform question = npc.transform.Find("QuestionMark");
+        if (exclamation != null)
+            exclamation.gameObject.SetActive(true);
+        if (question != null)
+            question.gameObject.SetActive(false);
     }
 
     public override void Update()
@@ -70,7 +80,11 @@ public class FollowState : State
 
     public override void Exit()
     {
-        anim.ResetTrigger("IsChasing");
+        // Disattiva l'ExclamationMark se presente tra i figli
+        Transform exclamation = npc.transform.Find("ExclamationMark");
+        if (exclamation != null)
+            exclamation.gameObject.SetActive(false);
+
         anim.ResetTrigger("IsIdle");
         base.Exit();
     }

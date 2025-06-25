@@ -17,6 +17,11 @@ public class AIController : MonoBehaviour
         {
             // Transition to InvestigateState when the NPC hears a sound
             state = new InvestigateState(this.gameObject, player, agent, anim, npcNum, soundPosition);
+            AlertIcon alert = GetComponentInChildren<AlertIcon>(true); // include oggetti disattivati
+            if (alert != null)
+            {
+                alert.Show();
+            }
         }
     }
 
