@@ -7,6 +7,7 @@ public class KeyInteract : MonoBehaviour, IInteractable
 
     private Outline outline;
     public PlayerSounds audioSource;
+    public InventoryUI inventoryUI;
 
     void Start()
     {
@@ -24,5 +25,6 @@ public class KeyInteract : MonoBehaviour, IInteractable
         audioSource.PlayPickUp();
         gameObject.SetActive(false);
         Inventory.inventory.AddItem(keyID);
+        inventoryUI.AddNewItem(keyID);
     }
 }
