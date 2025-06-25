@@ -6,7 +6,7 @@ public class State
 {
   public enum STATE
     {
-        IDLE, PATROL, CHASE
+        IDLE, PATROL, CHASE, INVESTIGATE
     };
 
     public enum EVENT
@@ -14,7 +14,7 @@ public class State
         ENTER, UPDATE, EXIT
     };
 
-    public STATE curentState;
+    public STATE currentState;
     protected EVENT stage;
     protected GameObject npc;
     protected Transform player;
@@ -24,6 +24,7 @@ public class State
     protected int npcNum; // NPC number to differentiate between different NPCs
     protected float patrolSpeed = 2.5f;
     protected float chaseSpeed = 3.5f;
+    protected float investigateSpeed = 2.0f;
 
     float visDistance = 7f;
     float visAngle = 30f;
@@ -73,10 +74,4 @@ public class State
         return false;
     }
 
-    public bool CanHearPlayer()
-    {
-        // Implement hearing logic here, e.g., based on distance or noise level
-        // For now, we can return false as a placeholder
-        return false;
-    }
 }

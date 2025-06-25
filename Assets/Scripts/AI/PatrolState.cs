@@ -8,7 +8,7 @@ public class PatrolState : State
     public PatrolState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim, int npcNum, bool fromChase = false)
         : base(npc, player, agent, anim, npcNum)
     {
-        curentState = STATE.PATROL;
+        currentState = STATE.PATROL;
         // Set the patrol speed for the NPC
         agent.speed = patrolSpeed;
         agent.isStopped = false;
