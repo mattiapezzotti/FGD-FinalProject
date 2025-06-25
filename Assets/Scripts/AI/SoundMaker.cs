@@ -14,10 +14,10 @@ public class SoundMaker : MonoBehaviour
 
         soundSource.Play();
 
-        EmitSound();
+        EmitSound(true);
     }
 
-    public void EmitSound()
+    public void EmitSound(bool replayClip = false)
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, soundRange);
 
@@ -30,7 +30,7 @@ public class SoundMaker : MonoBehaviour
                 if (guardAI != null)
                 {
                     Debug.Log($"Guard {guardAI.npcNum} heard sound at position {transform.position} with range {soundRange}");
-                    guardAI.HearSound(transform.position);
+                    guardAI.HearSound(transform.position, replayClip);
                 }
             }
         }

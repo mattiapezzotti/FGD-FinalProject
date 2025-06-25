@@ -13804,6 +13804,19 @@ MonoBehaviour:
   bounceSpeed: 8
   bounceAmplitude: 0.05
   rotationSpeed: 90
+--- !u!114 &418220498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418220493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baad8c8427bb94f4dbca667ba4718b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showTime: 2
 --- !u!1001 &422355694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23068,6 +23081,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1aaa277c3bda4d42abd5ccd4fd6fce1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 418220495}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1aaa277c3bda4d42abd5ccd4fd6fce1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 418220498}
   m_SourcePrefab: {fileID: 100100000, guid: e1aaa277c3bda4d42abd5ccd4fd6fce1, type: 3}
 --- !u!1001 &694237442
 PrefabInstance:
@@ -43349,6 +43365,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1948810774}
+  audioSource: {fileID: 1278972782}
+  confusedLinesClips:
+  - {fileID: 8300000, guid: a35599c93c35a4b0390fbeba27e0b79f, type: 3}
+  - {fileID: 8300000, guid: eaab7e4023e02497ca7c9ab602bbae32, type: 3}
+  - {fileID: 8300000, guid: 9b2e3a089feae4e90a67080da05ef417, type: 3}
+  - {fileID: 8300000, guid: 4b49a6a08cdaf4e458af06d78db34d0e, type: 3}
+  - {fileID: 8300000, guid: 0c6b3368bd3cb4ae49b367bfb89fd2d2, type: 3}
+  - {fileID: 8300000, guid: 177b7fe0427004621b0bbf4d975384df, type: 3}
+  - {fileID: 8300000, guid: 65f3242ec516042e1a6d688518d21e70, type: 3}
+  - {fileID: 8300000, guid: 9b19228f25cc448b681a4ff5e5e6e4a6, type: 3}
+  alertLinesClips:
+  - {fileID: 8300000, guid: 18d75c2cb29e8408aa8f6640c704b1d4, type: 3}
+  - {fileID: 8300000, guid: 8f5f090c5716349de934d81676dc2313, type: 3}
+  - {fileID: 8300000, guid: 4ebcb9e319bfb499a84101ffc72f320b, type: 3}
+  - {fileID: 8300000, guid: 8d9552aaccfd0417b93a0f5037157eb8, type: 3}
   npcNum: 0
 --- !u!195 &1278972778
 NavMeshAgent:
@@ -54757,7 +54788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 121455035113484126, guid: b2e057f9c821a914c95ef79e3a673e56, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.276
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 121455035113484126, guid: b2e057f9c821a914c95ef79e3a673e56, type: 3}
       propertyPath: m_LocalPosition.z
@@ -58431,6 +58462,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1948810774}
+  audioSource: {fileID: 0}
+  confusedLinesClips: []
+  alertLinesClips: []
   npcNum: 1
 --- !u!195 &1672950758
 NavMeshAgent:

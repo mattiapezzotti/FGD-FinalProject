@@ -25,8 +25,16 @@ public class InvestigateState : State
         agent.ResetPath();
         base.Enter();
         confused = true;
-        
+        // disattiva l'ExclamationMark se presente tra i figli
+        Transform exclamation = npc.transform.Find("ExclamationMark");
+        // attiva il QuestionMark
+        Transform question = npc.transform.Find("QuestionMark");
+        if (exclamation != null)
+            exclamation.gameObject.SetActive(false);
+        if (question != null)
+            question.gameObject.SetActive(true);
 
+        npc.GetComponent<AIController>().PlayConfusedLine();
     }
 
 
@@ -77,4 +85,11 @@ public class InvestigateState : State
         anim.ResetTrigger("IsPatrolling");
         base.Exit();
     }
+
+    public void SetInvestigatePosition(Vector3 newPosition)
+    {
+        soundPosition = newPosition;
+        agent.SetDestination(soundPosition);
+    }
+
 }

@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering.UI;
 
 public class FollowState : State
 {
@@ -26,13 +25,14 @@ public class FollowState : State
 
         // Attiva l'ExclamationMark se presente tra i figli
         Transform exclamation = npc.transform.Find("ExclamationMark");
-
-        // Se l'QuestionMark è attivo lo disattiva
+        // Se il QuestionMark è attivo lo disattiva
         Transform question = npc.transform.Find("QuestionMark");
         if (exclamation != null)
             exclamation.gameObject.SetActive(true);
         if (question != null)
             question.gameObject.SetActive(false);
+
+        npc.GetComponent<AIController>().PlayAlertLine();
     }
 
     public override void Update()
