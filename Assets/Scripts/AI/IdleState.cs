@@ -9,7 +9,7 @@ public class IdleState : State
     public IdleState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim, int npcNum)
         : base(npc, player, agent, anim, npcNum)
     {
-        curentState = STATE.IDLE;
+        currentState = STATE.IDLE;
     }
 
     public override void Enter()
