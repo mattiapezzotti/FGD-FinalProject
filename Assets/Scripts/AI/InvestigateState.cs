@@ -25,13 +25,24 @@ public class InvestigateState : State
         agent.ResetPath();
         base.Enter();
         confused = true;
-        npc.transform.LookAt(soundPosition); // Orient the NPC towards the sound position
+        
 
     }
 
 
     public override void Update()
     {
+
+        //ruota lnp vero la posizione del suono
+        Vector3 direction = (soundPosition - npc.transform.position).normalized;
+        direction.y = 0; // Mantieni la rotazione solo sull'asse Y
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation, Time.deltaTime * 2.5f); // 2.5f è la velocità di rotazione, puoi modificarla
+        }
+
+
         if (confused) 
         {
             idleTimer += Time.deltaTime;
@@ -56,8 +67,6 @@ public class InvestigateState : State
         }
         if (agent.hasPath && agent.remainingDistance < 0.1f)
         {
-            Debug.Log("Reached sound position: " + soundPosition);
-            // Here you can add logic for when the NPC reaches the sound position
             nextState = new IdleState(npc, player, agent, anim, npcNum);
             stage = EVENT.EXIT;
         }

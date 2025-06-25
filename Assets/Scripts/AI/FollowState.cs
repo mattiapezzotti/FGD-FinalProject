@@ -27,7 +27,6 @@ public class FollowState : State
 
     public override void Update()
     {
-        Debug.Log($"IsChasing: {anim.GetBool("IsChasing")} IsIdle: {anim.GetBool("IsIdle")}");
 
         if (CanSeePlayer())
         {

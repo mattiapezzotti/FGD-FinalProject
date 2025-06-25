@@ -17,7 +17,7 @@ public class SoundMaker : MonoBehaviour
         EmitSound();
     }
 
-    void EmitSound()
+    public void EmitSound()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, soundRange);
 

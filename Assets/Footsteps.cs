@@ -6,9 +6,13 @@ public class Footsteps : MonoBehaviour
     public AudioClip[] stoneFootstepsClips;
     public AudioClip[] woodFootstepsClips;
     public AudioClip[] outsideFootstepsClips;
+    public SoundMaker soundMaker;
     private Ray r;
     private RaycastHit hit;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+
+
+
     public void PlayFootstep()
     {
         r = new(transform.position, transform.up * -1);
@@ -34,7 +38,9 @@ public class Footsteps : MonoBehaviour
                     audioSource.clip = stoneFootstepsClips[randInt];
                 }
             }
-        audioSource.Play();
+            audioSource.Play();
+
+            soundMaker.EmitSound(); // Emit sound to notify guards
         }
     }
 }
