@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class GuardInventory : MonoBehaviour, IPickpocketer
 {
-    public string guardItemId;
+    public ItemData guardItemId;
     private bool hasItem;
-    public InventoryUI inventoryUI;
 
     void Start()
     {
@@ -16,7 +15,6 @@ public class GuardInventory : MonoBehaviour, IPickpocketer
         if (hasItem)
         {
             Inventory.inventory.AddItem(guardItemId);
-            inventoryUI.AddNewItem(guardItemId); 
         }
         
         hasItem = false;

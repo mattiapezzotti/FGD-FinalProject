@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Boat : MonoBehaviour, IInteractable
+public class BoatInteract : MonoBehaviour, IInteractable
 {
     private Outline outline;
     // Start is called once before the first execution of Update after the MonoBehaviour is created

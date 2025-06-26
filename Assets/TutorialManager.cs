@@ -40,23 +40,21 @@ public class TutorialManager : MonoBehaviour
         {
             case 0:
                 if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
-                    StartCoroutine(NextStepWithDelay(1f));
+                    StartCoroutine(NextStepWithDelay(2f));
                 break;
             case 1:
-                if (Input.GetKeyDown(KeyCode.C))
-                    StartCoroutine(NextStepWithDelay(2f));
+                StartCoroutine(NextStepWithDelay(10f));
                 break;
             case 2:
-                if (Input.GetKeyDown(KeyCode.LeftShift))
-                    StartCoroutine(NextStepWithDelay(2f));
+                if (Input.GetKeyDown(KeyCode.C))
+                    StartCoroutine(NextStepWithDelay(7f));
                 break;
             case 3:
                 if (Input.GetKeyDown(KeyCode.E))
                     StartCoroutine(NextStepWithDelay(2f));
                 break;
             case 4:
-                if (Input.GetKeyDown(KeyCode.F))
-                    StartCoroutine(NextStepWithDelay(2f));
+                StartCoroutine(NextStepWithDelay(5f));
                 break;
         }
     }
@@ -67,19 +65,19 @@ public class TutorialManager : MonoBehaviour
         switch (i)
         {
             case 0:
-                tutorialText.text = "Use <b>WASD</b> to move";
+                tutorialText.text = "Use <b>WASD</b> to move, hold <b>LEFT SHIFT</b> to run";
                 break;
             case 1:
-                tutorialText.text = "Press <b>C</b> to crouch";
+                tutorialText.text = "While walking you make noise, running makes the most noise";
                 break;
             case 2:
-                tutorialText.text = "Hold <b>Shift</b> to run";
+                tutorialText.text = "Press <b>C</b> to crouch, while crouched your footsteps are muffled";
                 break;
             case 3:
-                tutorialText.text = "Press <b>E</b> to mark enemies";
+                tutorialText.text = "You can mark a guard by looking at it and pressing <b>E</b>";
                 break;
             case 4:
-                tutorialText.text = "Press <b>F</b> to interact with items";
+                tutorialText.text = "Press <b>F</b> to interact<br> Stay close to an unsuspicious guard and press <b>F</b> to pickpocket";
                 break;
             default:
                 tutorialText.text = "";

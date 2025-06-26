@@ -20,17 +20,13 @@ public class AIController : MonoBehaviour
         {
             if(state.currentState == State.STATE.INVESTIGATE && !replayClip)
             {
-                
-                // If already investigating, just update the sound position
-                InvestigateState investigateState = state as InvestigateState;
-                if (investigateState != null)
+                if (state is InvestigateState investigateState)
                 {
                     investigateState.SetInvestigatePosition(soundPosition);
                 }
             }
             else
             {
-                // Transition to InvestigateState when the NPC hears a sound
                 state = new InvestigateState(this.gameObject, player, agent, anim, npcNum, soundPosition);
             }
         }
@@ -45,8 +41,7 @@ public class AIController : MonoBehaviour
         if (confusedLinesClips.Length > 0)
         {
             AudioClip clip = confusedLinesClips[Random.Range(0, confusedLinesClips.Length)];
-            audioSource.PlayOneShot(clip); // Play the clip once
-            //audioSource.Play();
+            audioSource.PlayOneShot(clip);
         }
     }
     public void PlayAlertLine()
@@ -58,8 +53,7 @@ public class AIController : MonoBehaviour
         if (alertLinesClips.Length > 0)
         {
             AudioClip clip = alertLinesClips[Random.Range(0, alertLinesClips.Length)];
-            audioSource.PlayOneShot(clip); // Play the clip once
-            //audioSource.Play();
+            audioSource.PlayOneShot(clip);
         }
     }
 

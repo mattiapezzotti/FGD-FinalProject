@@ -26,7 +26,7 @@ public class DoorInteract : MonoBehaviour, IInteractable
     public void Interact()
     {
         if (attiva) return;
-        if (Inventory.inventory.FindItem(keyID))
+        if (Inventory.inventory.IsItemInInventory(keyID))
         {
             audioSource.clip = doorOpensClip;
             attiva = true;

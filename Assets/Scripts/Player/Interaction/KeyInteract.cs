@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class KeyInteract : MonoBehaviour, IInteractable
 {
-    public string keyID;
+    public ItemData keyData;
 
     private Outline outline;
     public PlayerSounds audioSource;
-    public InventoryUI inventoryUI;
 
     void Start()
     {
@@ -24,7 +23,6 @@ public class KeyInteract : MonoBehaviour, IInteractable
     {
         audioSource.PlayPickUp();
         gameObject.SetActive(false);
-        Inventory.inventory.AddItem(keyID);
-        inventoryUI.AddNewItem(keyID);
+        Inventory.inventory.AddItem(keyData);
     }
 }

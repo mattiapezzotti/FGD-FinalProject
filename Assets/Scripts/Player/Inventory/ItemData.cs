@@ -4,5 +4,6 @@ using UnityEngine;
 public class ItemData
 {
     public string id;
+    public string displayName;
     public Sprite icon;
 }
