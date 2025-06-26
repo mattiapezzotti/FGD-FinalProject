@@ -47,7 +47,7 @@ public class InvestigateState : State
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation, Time.deltaTime * 1.5f); // 2.5f è la velocità di rotazione, puoi modificarla
+            npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation, Time.deltaTime * 1.5f);
         }
 
 

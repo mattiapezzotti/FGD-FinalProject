@@ -49,9 +49,6 @@ public class PatrolState : State
             nextState = new IdleState(npc, player, agent, anim, npcNum);
             stage = EVENT.EXIT;
         }
-
-
-
     }
 
     public override void Exit()

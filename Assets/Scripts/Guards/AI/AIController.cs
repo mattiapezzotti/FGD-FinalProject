@@ -4,10 +4,10 @@ using UnityEngine.AI;
 public class AIController : MonoBehaviour
 {
 
-    NavMeshAgent agent;
-    Animator anim; 
+    private NavMeshAgent agent;
+    private Animator anim; 
     public Transform player; // Reference to the player Transform
-    State state;
+    private State state;
     public AudioSource audioSource;
     public AudioClip[] confusedLinesClips;
     public AudioClip[] alertLinesClips; // Lines to play when the NPC is alerted
@@ -69,6 +69,5 @@ public class AIController : MonoBehaviour
     void Update()
     {
         state = state.Process();
-        
     }
 }

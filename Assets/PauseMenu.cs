@@ -44,7 +44,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Pause()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
@@ -53,6 +53,11 @@ public class PauseMenu : MonoBehaviour
         player.GetComponent<FirstPersonController>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("Game");
     }
 
     public void QuitGame()
