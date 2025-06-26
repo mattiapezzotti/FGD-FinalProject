@@ -26,8 +26,8 @@ public class InvestigateState : State
         base.Enter();
         confused = true;
         // disattiva l'ExclamationMark se presente tra i figli
-        Transform exclamation = npc.transform.Find("ExclamationMark");
         // attiva il QuestionMark
+        Transform exclamation = npc.transform.Find("ExclamationMark");
         Transform question = npc.transform.Find("QuestionMark");
         if (exclamation != null)
             exclamation.gameObject.SetActive(false);
@@ -41,13 +41,13 @@ public class InvestigateState : State
     public override void Update()
     {
 
-        //ruota lnp vero la posizione del suono
+        //ruota lnpc vero la posizione del suono
         Vector3 direction = (soundPosition - npc.transform.position).normalized;
         direction.y = 0; // Mantieni la rotazione solo sull'asse Y
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation, Time.deltaTime * 2.5f); // 2.5f è la velocità di rotazione, puoi modificarla
+            npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation, Time.deltaTime * 1.5f); // 2.5f è la velocità di rotazione, puoi modificarla
         }
 
 
@@ -68,9 +68,10 @@ public class InvestigateState : State
             nextState = new FollowState(npc, player, agent, anim, npcNum);
             stage = EVENT.EXIT;
         }
-        else if (!agent.hasPath && !confused)
+        else if (!confused)
         {
             agent.SetDestination(soundPosition);
+            anim.ResetTrigger("IsIdle");
             anim.SetTrigger("IsPatrolling");
         }
         if (agent.hasPath && agent.remainingDistance < 0.1f)
@@ -82,14 +83,17 @@ public class InvestigateState : State
     }
     public override void Exit()
     {
+        anim.ResetTrigger("IsIdle");
         anim.ResetTrigger("IsPatrolling");
+        Transform question = npc.transform.Find("QuestionMark");
+        if (question != null)
+            question.gameObject.SetActive(false);
         base.Exit();
     }
 
     public void SetInvestigatePosition(Vector3 newPosition)
     {
         soundPosition = newPosition;
-        agent.SetDestination(soundPosition);
     }
 
 }

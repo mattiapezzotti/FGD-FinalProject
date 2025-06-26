@@ -68,7 +68,20 @@ public class State
 
         if (directionToPlayer.magnitude <= visDistance && angleToPlayer <= visAngle)
         {
-            return true;
+            Ray ray = new Ray(npc.transform.position + Vector3.up * 0.5f, directionToPlayer.normalized); // altezza occhi
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, visDistance))
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    Debug.Log($"Guard {npcNum} can see player at position {player.position}");
+                    return true;
+                }
+                else
+                {
+                    Debug.Log($"Guard {npcNum} cannot see player: obstacle '{hit.collider.name}' in the way");
+                }
+            }
         }
         return false;
     }
