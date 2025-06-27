@@ -7,6 +7,8 @@ public class Inventory : MonoBehaviour
     public List<ItemData> items = new();
     public InventoryUI inventoryUI;
 
+    private int counterRock = 0;
+
     void Awake()
     {
         if (inventory != null && inventory != this)
@@ -16,15 +18,29 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(ItemData itemData)
     {
-        items.Add(itemData);
-        inventoryUI.UpdateUI();
+        if (IsItemInInventory("Rock"))
+        {
+            counterRock++;
+        }
+        else
+        {
+            items.Add(itemData);
+            inventoryUI.UpdateUI();
+        }
     }
 
     public void RemoveItem(string itemID)
     {
         ItemData itemToRemove = FindItem(itemID);
-        items.Remove(itemToRemove);
-        inventoryUI.UpdateUI();
+        if (IsItemInInventory("Rock"))
+        {
+            counterRock--;
+        }
+        else
+        {
+            items.Remove(itemToRemove);
+            inventoryUI.UpdateUI();
+        }
     }
 
     public bool IsItemInInventory(string itemToFind)
