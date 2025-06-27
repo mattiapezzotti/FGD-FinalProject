@@ -12,6 +12,7 @@ public class RockInteract : MonoBehaviour, IInteractable
     {
         outline = GetComponent<Outline>();
         outline.enabled = false;
+        audioSource = FindAnyObjectByType<PlayerSounds>();
     }
 
     public void DrawOutline(bool b)

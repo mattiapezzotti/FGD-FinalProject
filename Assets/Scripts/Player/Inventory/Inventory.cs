@@ -67,8 +67,8 @@ public class Inventory : MonoBehaviour
         }
         return false;
     }
-    
-        public ItemData FindItem(string itemToFind)
+
+    public ItemData FindItem(string itemToFind)
     {
         foreach (ItemData item in items)
         {
@@ -76,5 +76,10 @@ public class Inventory : MonoBehaviour
                 return item;
         }
         return null;
+    }
+    
+    public int GetRockCount()
+    {
+        return counterRock;
     }
 }
