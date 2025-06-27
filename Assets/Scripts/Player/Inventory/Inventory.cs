@@ -18,29 +18,44 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(ItemData itemData)
     {
-        if (IsItemInInventory("Rock"))
+        if (itemData.id == "Rock")
         {
             counterRock++;
+            if (!IsItemInInventory("Rock"))
+            {
+                items.Add(itemData);
+            }
         }
         else
         {
             items.Add(itemData);
-            inventoryUI.UpdateUI();
         }
+
+        inventoryUI.UpdateUI();
     }
 
     public void RemoveItem(string itemID)
     {
-        ItemData itemToRemove = FindItem(itemID);
-        if (IsItemInInventory("Rock"))
+        if (itemID == "Rock")
         {
             counterRock--;
+            if (counterRock <= 0)
+            {
+                ItemData rockItem = FindItem("Rock");
+                if (rockItem != null)
+                {
+                    items.Remove(rockItem);
+                }
+            }
         }
         else
         {
-            items.Remove(itemToRemove);
-            inventoryUI.UpdateUI();
+            ItemData itemToRemove = FindItem(itemID);
+            if (itemToRemove != null)
+                items.Remove(itemToRemove);
         }
+
+        inventoryUI.UpdateUI();
     }
 
     public bool IsItemInInventory(string itemToFind)
