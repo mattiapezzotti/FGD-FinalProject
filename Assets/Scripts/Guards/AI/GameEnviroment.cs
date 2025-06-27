@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//aggiungere un bool per quale guardia sta usando la classe?
+//DA MODIFICARE! MODIFICARE LA LOGICA AGGIUNGENDO UNA MAPPA<LISTA, INDEX>
 public class GameEnviroment
 {
     private static GameEnviroment instance;
@@ -94,6 +94,10 @@ public class GameEnviroment
             CurrentWaypointIndex2 = closestIndex;
         }
     }
+    public static void Reset()
+    {
+        instance = null;
+    }
 
     public static GameEnviroment Singleton
     {
@@ -108,5 +112,7 @@ public class GameEnviroment
             return instance;
         }
     }
+
+
 
 }
