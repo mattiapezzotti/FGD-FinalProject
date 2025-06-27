@@ -41,7 +41,7 @@ public class InvestigateState : State
     public override void Update()
     {
 
-        //ruota lnpc vero la posizione del suono
+        //ruota lnpc verso la posizione del suono
         Vector3 direction = (soundPosition - npc.transform.position).normalized;
         direction.y = 0; // Mantieni la rotazione solo sull'asse Y
         if (direction != Vector3.zero)
@@ -70,13 +70,18 @@ public class InvestigateState : State
         }
         else if (!confused)
         {
-            agent.SetDestination(soundPosition);
+            // Check if the sound position is valid
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(soundPosition, out hit, 3.0f, NavMesh.AllAreas))
+            {
+                agent.SetDestination(hit.position);
+            }
             anim.ResetTrigger("IsIdle");
             anim.SetTrigger("IsPatrolling");
         }
         if (agent.hasPath && agent.remainingDistance < 0.1f)
         {
-            nextState = new IdleState(npc, player, agent, anim, npcNum);
+            nextState = new IdleState(npc, player, agent, anim, npcNum, true);
             stage = EVENT.EXIT;
         }
 

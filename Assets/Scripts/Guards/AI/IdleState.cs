@@ -3,13 +3,15 @@ using UnityEngine.AI;
 
 public class IdleState : State
 {
+    private bool goToNearestWP;
     private float idleDuration = 3f; // Durata in secondi
     private float idleTimer = 0f;
 
-    public IdleState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim, int npcNum)
+    public IdleState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim, int npcNum, bool goToNearestWP = false)
         : base(npc, player, agent, anim, npcNum)
     {
         currentState = STATE.IDLE;
+        this.goToNearestWP = goToNearestWP;
     }
 
     public override void Enter()
@@ -38,7 +40,7 @@ public class IdleState : State
         
 
         // Dopo idleDuration secondi, puoi aggiungere qui la logica per cambiare stato
-        nextState = new PatrolState(npc, player, agent, anim, npcNum);
+        nextState = new PatrolState(npc, player, agent, anim, npcNum, goToNearestWP);
         stage = EVENT.EXIT;
 
         

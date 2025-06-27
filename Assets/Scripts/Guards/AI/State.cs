@@ -63,12 +63,12 @@ public class State
 
     public bool CanSeePlayer()
     {
-        Vector3 directionToPlayer = player.position - npc.transform.position;
+        Vector3 directionToPlayer = (player.position + Vector3.up * 0.8f) - (npc.transform.position + Vector3.up * 1.6f);
         float angleToPlayer = Vector3.Angle(npc.transform.forward, directionToPlayer);
 
         if (directionToPlayer.magnitude <= visDistance && angleToPlayer <= visAngle)
         {
-            Ray ray = new Ray(npc.transform.position + Vector3.up * 0.5f, directionToPlayer.normalized); // altezza occhi
+            Ray ray = new Ray(npc.transform.position + Vector3.up * 1.6f, directionToPlayer.normalized); // altezza occhi
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, visDistance))
             {

@@ -4,24 +4,24 @@ using UnityEngine.AI;
 
 public class PatrolState : State
 {
-    private bool fromChase; 
-    public PatrolState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim, int npcNum, bool fromChase = false)
+    private bool gotToNearestWP; 
+    public PatrolState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim, int npcNum, bool goToNearestWP = false)
         : base(npc, player, agent, anim, npcNum)
     {
         currentState = STATE.PATROL;
         // Set the patrol speed for the NPC
         agent.speed = patrolSpeed;
         agent.isStopped = false;
-        this.fromChase = fromChase;
+        this.gotToNearestWP = goToNearestWP;
         
     }
 
     public override void Enter()
     {
-        Debug.Log("Entering PatrolState: " + fromChase);
-        if (fromChase)
+        Debug.Log("Entering PatrolState: " + gotToNearestWP);
+        if (gotToNearestWP)
         {
-            GameEnviroment.Singleton.SetIndexFromChase(npcNum, npc.transform.position);
+            GameEnviroment.Singleton.SetIndexToNearestWP(npcNum, npc.transform.position);
         }
         agent.ResetPath();
         anim.SetTrigger("IsPatrolling");
@@ -37,7 +37,7 @@ public class PatrolState : State
             nextState = new FollowState(npc, player, agent, anim, npcNum);
             stage = EVENT.EXIT;
         }
-        else if (!agent.hasPath)
+        else if (agent != null && !agent.hasPath)
         {
             agent.SetDestination(GameEnviroment.Singleton.GetWaypointList(npcNum)[GameEnviroment.Singleton.CurrentWaypointIndex(npcNum)].transform.position);
             

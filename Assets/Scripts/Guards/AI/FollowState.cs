@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class FollowState : State
 {
     bool confused = false;
-    private float idleDuration = 2f; // Durata in secondi
+    private float idleDuration = 1f; // Durata in secondi
     private float idleTimer = 0f;
 
     public FollowState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim, int npcNum)
@@ -40,6 +40,14 @@ public class FollowState : State
 
         if (CanSeePlayer())
         {
+            //ruota lnpc    
+            Vector3 direction = (player.position - npc.transform.position).normalized;
+            direction.y = 0; // Mantieni la rotazione solo sull'asse Y
+            if (direction != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, targetRotation, Time.deltaTime * 100f);
+            }
             // Aggiorna sempre la destinazione verso il player
             agent.isStopped = false;
             agent.SetDestination(player.position);
@@ -71,8 +79,8 @@ public class FollowState : State
                 idleTimer += Time.deltaTime;
                 if (idleTimer >= idleDuration)
                 {
-                    nextState = new PatrolState(npc, player, agent, anim, npcNum, true);
-                    stage = EVENT.EXIT;
+                    nextState = new InvestigateState(npc, player, agent, anim, npcNum, player.transform.position);
+                    stage = EVENT.EXIT; // Passa allo stato di InvestigateState
                 }
             }
         }

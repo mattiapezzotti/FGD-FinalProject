@@ -61,7 +61,7 @@ public class GameEnviroment
         }
     }
 
-    public void SetIndexFromChase(int npcNum, Vector3 npcPosition)
+    public void SetIndexToNearestWP(int npcNum, Vector3 npcPosition)
     {
         if (npcNum == 0)
         {
