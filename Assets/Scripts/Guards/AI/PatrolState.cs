@@ -39,7 +39,7 @@ public class PatrolState : State
         }
         else if (agent != null && !agent.hasPath)
         {
-            agent.SetDestination(GameEnviroment.Singleton.GetWaypointList(npcNum)[GameEnviroment.Singleton.CurrentWaypointIndex(npcNum)].transform.position);
+            agent.SetDestination(GameEnviroment.Singleton.GetWaypointList(npcNum)[GameEnviroment.Singleton.GetCurrentWaypointIndex(npcNum)].transform.position);
             
             GameEnviroment.Singleton.SetCurrentWaypointIndex(npcNum);
         }

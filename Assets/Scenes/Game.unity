@@ -3495,7 +3495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8632508176750908178, guid: f9d6a48488034e14f848e989e667164d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.24
+      value: -3.7
       objectReference: {fileID: 0}
     - target: {fileID: 8632508176750908178, guid: f9d6a48488034e14f848e989e667164d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5887,7 +5887,7 @@ GameObject:
   - component: {fileID: 183750807}
   m_Layer: 0
   m_Name: WP1
-  m_TagString: WayPoint
+  m_TagString: WayPoint0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16189,11 +16189,11 @@ Transform:
   - {fileID: 608068065}
   - {fileID: 1195898252}
   - {fileID: 1546627598}
-  - {fileID: 2137130972}
   - {fileID: 611398246}
-  - {fileID: 1909550551}
   - {fileID: 1513169153}
   - {fileID: 1839478452}
+  - {fileID: 1909550551}
+  - {fileID: 2137130972}
   m_Father: {fileID: 2051075969}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &497232151
@@ -19624,7 +19624,7 @@ GameObject:
   - component: {fileID: 608068065}
   m_Layer: 0
   m_Name: WP2
-  m_TagString: WayPoint
+  m_TagString: WayPoint0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19720,8 +19720,8 @@ GameObject:
   m_Component:
   - component: {fileID: 611398246}
   m_Layer: 0
-  m_Name: WP6
-  m_TagString: WayPoint2
+  m_Name: WP5
+  m_TagString: WayPoint1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19735,7 +19735,7 @@ Transform:
   m_GameObject: {fileID: 611398245}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.87, y: 0, z: 19.79}
+  m_LocalPosition: {x: -3.87, y: 0, z: 26.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39492,7 +39492,7 @@ GameObject:
   - component: {fileID: 1195898252}
   m_Layer: 0
   m_Name: WP3
-  m_TagString: WayPoint
+  m_TagString: WayPoint0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39506,7 +39506,7 @@ Transform:
   m_GameObject: {fileID: 1195898251}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.042, y: 0, z: -3.999}
+  m_LocalPosition: {x: 4.61, y: 0, z: -6.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -50267,8 +50267,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1513169153}
   m_Layer: 0
-  m_Name: WP8
-  m_TagString: WayPoint2
+  m_Name: WP6
+  m_TagString: WayPoint1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50282,7 +50282,7 @@ Transform:
   m_GameObject: {fileID: 1513169152}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.91, y: 0.968, z: 21.79}
+  m_LocalPosition: {x: 9.73, y: 0.968, z: 22.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -51060,7 +51060,7 @@ GameObject:
   - component: {fileID: 1546627598}
   m_Layer: 0
   m_Name: WP4
-  m_TagString: WayPoint
+  m_TagString: WayPoint0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63940,8 +63940,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1839478452}
   m_Layer: 0
-  m_Name: WP9
-  m_TagString: WayPoint2
+  m_Name: WP7
+  m_TagString: WayPoint1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63955,7 +63955,7 @@ Transform:
   m_GameObject: {fileID: 1839478451}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.45, y: 0, z: 27.067}
+  m_LocalPosition: {x: -3.85, y: 0, z: 17.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66741,8 +66741,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1909550551}
   m_Layer: 0
-  m_Name: WP7
-  m_TagString: WayPoint2
+  m_Name: WP8
+  m_TagString: WayPoint1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73929,8 +73929,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2137130972}
   m_Layer: 0
-  m_Name: WP5
-  m_TagString: WayPoint2
+  m_Name: WP9
+  m_TagString: WayPoint1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73944,7 +73944,7 @@ Transform:
   m_GameObject: {fileID: 2137130971}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.28, y: 0, z: 27.067}
+  m_LocalPosition: {x: 6.02, y: 0, z: 27.067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
