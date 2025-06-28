@@ -13,6 +13,8 @@ public class Interactor : MonoBehaviour
     private Ray r;
     private RaycastHit hit;
     private IInteractable lastHit;
+    public TutorialManager tutorialManager;
+    private bool seenTutorial = false;
 
     // Update is called once per frame
     void Update()
@@ -23,6 +25,17 @@ public class Interactor : MonoBehaviour
         {
             if (hit.collider.gameObject.TryGetComponent(out IInteractable interacted))
             {
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    if (!seenTutorial)
+                    {
+                        tutorialManager.TriggerAreaStep(3);
+                        seenTutorial = true;
+                    }
+
+                    interacted.Interact();
+                }
+
                 if (lastHit != null && lastHit != interacted)
                 {
                     lastHit.DrawOutline(false);
@@ -46,18 +59,6 @@ public class Interactor : MonoBehaviour
             {
                 lastHit.DrawOutline(false);
                 lastHit = null;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-
-            if (Physics.Raycast(r, out hit, range))
-            {
-                if (hit.collider.gameObject.TryGetComponent(out IInteractable interacted))
-                {
-                    interacted.Interact();
-                }
             }
         }
     }

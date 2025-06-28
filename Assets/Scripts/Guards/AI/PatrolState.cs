@@ -18,7 +18,7 @@ public class PatrolState : State
 
     public override void Enter()
     {
-        Debug.Log("Entering PatrolState: " + gotToNearestWP);
+        // Debug.Log("Entering PatrolState: " + gotToNearestWP);
         if (gotToNearestWP)
         {
             GameEnviroment.Singleton.SetIndexToNearestWP(npcNum, npc.transform.position);

@@ -22,7 +22,7 @@ public class RockInteract : MonoBehaviour, IInteractable
     public void Interact()
     {
         audioSource.PlayPickUp();
-        gameObject.SetActive(false);
         Inventory.inventory.AddItem(rockData);
+        Inventory.inventory.SetRockCount(5);
     }
 }

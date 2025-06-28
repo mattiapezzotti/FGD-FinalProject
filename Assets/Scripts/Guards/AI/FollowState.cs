@@ -18,14 +18,14 @@ public class FollowState : State
 
     public override void Enter()
     {
-        Debug.Log("Entering FollowState: " + npc.name);
+        // Debug.Log("Entering FollowState: " + npc.name);
         anim.SetTrigger("IsChasing");
         base.Enter();
         agent.SetDestination(player.position);
 
         // Attiva l'ExclamationMark se presente tra i figli
         Transform exclamation = npc.transform.Find("ExclamationMark");
-        // Se il QuestionMark è attivo lo disattiva
+        // Se il QuestionMark ï¿½ attivo lo disattiva
         Transform question = npc.transform.Find("QuestionMark");
         if (exclamation != null)
             exclamation.gameObject.SetActive(true);
@@ -56,12 +56,6 @@ public class FollowState : State
             confused = false;
             anim.ResetTrigger("IsIdle");
             anim.SetTrigger("IsChasing");
-
-            if (agent.remainingDistance < 0.1f)
-            {
-                Debug.Log("Reached player: " + player.name);
-                // Logica quando raggiunge il player
-            }
         }
         else
         {
