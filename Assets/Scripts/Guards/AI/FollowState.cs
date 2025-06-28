@@ -56,6 +56,15 @@ public class FollowState : State
             confused = false;
             anim.ResetTrigger("IsIdle");
             anim.SetTrigger("IsChasing");
+
+
+            float distanceToPlayer = Vector3.Distance(npc.transform.position, player.position);
+            if (distanceToPlayer < 1.35f) // Soglia di cattura
+            {
+                PauseMenu.pauseMenu.YouLost();
+                agent.isStopped = true; // Ferma la guardia
+                return;
+            }
         }
         else
         {

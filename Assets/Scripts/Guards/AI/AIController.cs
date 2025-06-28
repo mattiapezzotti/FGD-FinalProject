@@ -76,11 +76,4 @@ public class AIController : MonoBehaviour
         return state.currentState;
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player") && state.currentState == State.STATE.CHASE)
-        {
-            PauseMenu.pauseMenu.YouLost();
-        }
-    }
 }

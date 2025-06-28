@@ -3731,9 +3731,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8973146141492562344, guid: f9d6a48488034e14f848e989e667164d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1672950763}
-    - targetCorrespondingSourceObject: {fileID: 8973146141492562344, guid: f9d6a48488034e14f848e989e667164d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1672950765}
   m_SourcePrefab: {fileID: 100100000, guid: f9d6a48488034e14f848e989e667164d, type: 3}
 --- !u!1001 &93382910
 PrefabInstance:
@@ -35686,9 +35683,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8973146141492562344, guid: f9d6a48488034e14f848e989e667164d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1278972781}
-    - targetCorrespondingSourceObject: {fileID: 8973146141492562344, guid: f9d6a48488034e14f848e989e667164d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1278972786}
   m_SourcePrefab: {fileID: 100100000, guid: f9d6a48488034e14f848e989e667164d, type: 3}
 --- !u!1 &1034788609
 GameObject:
@@ -44809,33 +44803,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8632508176750908178, guid: f9d6a48488034e14f848e989e667164d, type: 3}
   m_PrefabInstance: {fileID: 1034550181}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1278972786
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278972768}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!4 &1279104503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4661435515762813124, guid: e289bf5debb17f6459818c207d781953, type: 3}
@@ -58947,33 +58914,6 @@ MonoBehaviour:
   metalFootstepsClips:
   - {fileID: 8300000, guid: 9e52fd1c0438b1f46af735e91f5c19b5, type: 3}
   - {fileID: 8300000, guid: c7a01021799e8cd499273f6ecb0f6bec, type: 3}
---- !u!54 &1672950765
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1672950750}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1673475095
 PrefabInstance:
   m_ObjectHideFlags: 0
