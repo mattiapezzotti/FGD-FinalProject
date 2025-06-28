@@ -4,16 +4,23 @@ public class SoundMaker : MonoBehaviour
 {
     public AudioSource soundSource;
     public float soundRange = 10f;
+    private bool hasBeenThrown = false;
+    private bool hasPlayed = false;
+
+    public void MarkAsThrown()
+    {
+        hasBeenThrown = true;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (soundSource.isPlaying)
+        if (!hasBeenThrown || hasPlayed)
         {
             return;
         }
 
+        hasPlayed = true;
         soundSource.Play();
-
         EmitSound(true);
     }
 

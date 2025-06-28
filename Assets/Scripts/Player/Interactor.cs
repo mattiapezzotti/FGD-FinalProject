@@ -79,6 +79,12 @@ public class Interactor : MonoBehaviour
 
             GameObject thrownRock = Instantiate(rockPrefab, source.position + source.forward * 1f, Quaternion.identity);
 
+            SoundMaker soundMaker = thrownRock.GetComponent<SoundMaker>();
+            if (soundMaker != null)
+            {
+                soundMaker.MarkAsThrown();
+            }
+
             Rigidbody rb = thrownRock.GetComponent<Rigidbody>();
             if (rb != null)
             {
