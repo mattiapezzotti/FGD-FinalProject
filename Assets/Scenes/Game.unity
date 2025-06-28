@@ -9389,6 +9389,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9218377935294861655, guid: 1e711044cbc639d44aa004669771969e, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218377935294861655, guid: 1e711044cbc639d44aa004669771969e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -13768,6 +13772,10 @@ PrefabInstance:
     - target: {fileID: 9218377935294861655, guid: 1e711044cbc639d44aa004669771969e, type: 3}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218377935294861655, guid: 1e711044cbc639d44aa004669771969e, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 9218377935294861655, guid: 1e711044cbc639d44aa004669771969e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -24644,6 +24652,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 57a472d517a1c0940938e58eef4271cb, type: 3}
       propertyPath: m_Name
       value: Steps_Small
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 57a472d517a1c0940938e58eef4271cb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 57a472d517a1c0940938e58eef4271cb, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -76512,6 +76524,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 57a472d517a1c0940938e58eef4271cb, type: 3}
       propertyPath: m_Name
       value: Steps_Small (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 57a472d517a1c0940938e58eef4271cb, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 57a472d517a1c0940938e58eef4271cb, type: 3}
       propertyPath: m_StaticEditorFlags
