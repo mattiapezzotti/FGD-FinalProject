@@ -16,7 +16,7 @@ public class IdleState : State
 
     public override void Enter()
     {
-        Debug.Log("Entering IdleState: " + npc.name);
+        // Debug.Log("Entering IdleState: " + npc.name);
         anim.SetTrigger("IsIdle");
         idleTimer = 0f; // Reset del timer ogni volta che si entra nello stato
         base.Enter();

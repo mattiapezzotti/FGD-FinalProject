@@ -6,7 +6,7 @@ public class InvestigateState : State
 {
     private Vector3 soundPosition;
     bool confused = false;
-    private float idleDuration = 2f; // Durata in secondi
+    private float idleDuration = 2f;
     private float idleTimer = 0f;
 
     public InvestigateState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim, int npcNum, Vector3 soundPosition)
@@ -20,13 +20,13 @@ public class InvestigateState : State
 
     public override void Enter()
     {
-        Debug.Log("Entering InvestigateState: " + npc.name);
+        // Debug.Log("Entering InvestigateState: " + npc.name);
         
         agent.ResetPath();
         base.Enter();
         confused = true;
-        // disattiva l'ExclamationMark se presente tra i figli
-        // attiva il QuestionMark
+        // disattiva l'Exclamation Mark
+        // attiva il Question Mark
         Transform exclamation = npc.transform.Find("ExclamationMark");
         Transform question = npc.transform.Find("QuestionMark");
         if (exclamation != null)

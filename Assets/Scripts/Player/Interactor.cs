@@ -13,6 +13,8 @@ public class Interactor : MonoBehaviour
     private Ray r;
     private RaycastHit hit;
     private IInteractable lastHit;
+    public TutorialManager tutorialManager;
+    private bool seenTutorial = false;
 
     public GameObject rockPrefab;
     public float throwForce = 10f;
@@ -26,6 +28,17 @@ public class Interactor : MonoBehaviour
         {
             if (hit.collider.gameObject.TryGetComponent(out IInteractable interacted))
             {
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    if (!seenTutorial)
+                    {
+                        tutorialManager.TriggerAreaStep(3);
+                        seenTutorial = true;
+                    }
+
+                    interacted.Interact();
+                }
+
                 if (lastHit != null && lastHit != interacted)
                 {
                     lastHit.DrawOutline(false);
@@ -51,39 +64,5 @@ public class Interactor : MonoBehaviour
                 lastHit = null;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-
-            if (Physics.Raycast(r, out hit, range))
-            {
-                if (hit.collider.gameObject.TryGetComponent(out IInteractable interacted))
-                {
-                    interacted.Interact();
-                }
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            ThrowRock();
-        }
     }
-
-    void ThrowRock()
-{
-    if (Inventory.inventory.IsItemInInventory("Rock") && Inventory.inventory.GetRockCount() > 0)
-    {
-        Inventory.inventory.RemoveItem("Rock");
-
-        GameObject thrownRock = Instantiate(rockPrefab, source.position + source.forward * 1f, Quaternion.identity);
-
-        Rigidbody rb = thrownRock.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.AddForce(source.forward * throwForce, ForceMode.Impulse);
-        }
-    }
-}
-
 }

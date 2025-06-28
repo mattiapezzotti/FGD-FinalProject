@@ -5,7 +5,7 @@ public class AIController : MonoBehaviour
 {
 
     private NavMeshAgent agent;
-    private Animator anim; 
+    private Animator anim;
     public Transform player; // Reference to the player Transform
     private State state;
     public AudioSource audioSource;
@@ -18,7 +18,7 @@ public class AIController : MonoBehaviour
     {
         if (state.currentState != State.STATE.CHASE)
         {
-            if(state.currentState == State.STATE.INVESTIGATE && !replayClip)
+            if (state.currentState == State.STATE.INVESTIGATE && !replayClip)
             {
                 if (state is InvestigateState investigateState)
                 {
@@ -61,7 +61,7 @@ public class AIController : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>(); 
+        anim = GetComponent<Animator>();
         state = new PatrolState(this.gameObject, player, agent, anim, npcNum);//da aggiungere anim
     }
 
@@ -69,5 +69,18 @@ public class AIController : MonoBehaviour
     void Update()
     {
         state = state.Process();
+    }
+
+    public State.STATE GetGuardState()
+    {
+        return state.currentState;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && state.currentState == State.STATE.CHASE)
+        {
+            PauseMenu.pauseMenu.YouLost();
+        }
     }
 }

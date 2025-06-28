@@ -6,6 +6,7 @@ public class Inventory : MonoBehaviour
     public static Inventory inventory { get; private set; }
     public List<ItemData> items = new();
     public InventoryUI inventoryUI;
+    private int rockCount;
 
     private int counterRock = 0;
 
@@ -21,7 +22,7 @@ public class Inventory : MonoBehaviour
         if (itemData.id == "Rock")
         {
             counterRock++;
-            if (!IsItemInInventory("Rock"))
+            if (!HasItem("Rock"))
             {
                 items.Add(itemData);
             }
@@ -58,7 +59,7 @@ public class Inventory : MonoBehaviour
         inventoryUI.UpdateUI();
     }
 
-    public bool IsItemInInventory(string itemToFind)
+    public bool HasItem(string itemToFind)
     {
         foreach (ItemData item in items)
         {
@@ -77,9 +78,9 @@ public class Inventory : MonoBehaviour
         }
         return null;
     }
-    
-    public int GetRockCount()
+
+    public void SetRockCount(int count)
     {
-        return counterRock;
+        rockCount = count;
     }
 }

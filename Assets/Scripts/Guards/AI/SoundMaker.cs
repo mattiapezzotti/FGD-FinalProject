@@ -29,7 +29,7 @@ public class SoundMaker : MonoBehaviour
 
                 if (guardAI != null)
                 {
-                    Debug.Log($"Guard {guardAI.npcNum} heard sound at position {transform.position} with range {soundRange}");
+                    // Debug.Log($"Guard {guardAI.npcNum} heard sound at position {transform.position} with range {soundRange}");
                     guardAI.HearSound(transform.position, replayClip);
                 }
             }
