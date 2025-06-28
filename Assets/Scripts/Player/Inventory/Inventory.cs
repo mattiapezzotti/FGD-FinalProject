@@ -83,4 +83,8 @@ public class Inventory : MonoBehaviour
     {
         rockCount = count;
     }
+    public int GetRockCount()
+    {
+        return counterRock;
+    }
 }

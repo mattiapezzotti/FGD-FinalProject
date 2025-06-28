@@ -12,7 +12,10 @@ GameObject:
   - component: {fileID: 5202732821076444928}
   - component: {fileID: 5202732821077444032}
   - component: {fileID: 1028483445463271210}
-  - component: {fileID: 984632838363460068}
+  - component: {fileID: 4522365555050763846}
+  - component: {fileID: 6911062906867113101}
+  - component: {fileID: 3435070470301183425}
+  - component: {fileID: 1868243238228057338}
   m_Layer: 0
   m_Name: Rock_02
   m_TagString: Untagged
@@ -119,8 +122,8 @@ Rigidbody:
   m_GameObject: {fileID: 5202732821079448320}
   serializedVersion: 4
   m_Mass: 2
-  m_Drag: 3
-  m_AngularDrag: 4
+  m_Drag: 1
+  m_AngularDrag: 2
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -158,3 +161,38 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.08
   m_Center: {x: 0.000652913, y: 0, z: 0.0023095235}
+--- !u!114 &3435070470301183425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5202732821079448320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ff5690a43444fb8b0c262be823ac9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rockData:
+    id: Rock
+    displayName: Rock
+    icon: {fileID: 21300000, guid: b3fa435851c0947cf80ef13548c1d0ea, type: 3}
+  audioSource: {fileID: 0}
+--- !u!114 &1868243238228057338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5202732821079448320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

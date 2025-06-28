@@ -17,7 +17,7 @@ public class Interactor : MonoBehaviour
     private bool seenTutorial = false;
 
     public GameObject rockPrefab;
-    public float throwForce = 10f;
+    public float throwForce = 20f;
 
     // Update is called once per frame
     void Update()
@@ -62,6 +62,29 @@ public class Interactor : MonoBehaviour
             {
                 lastHit.DrawOutline(false);
                 lastHit = null;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ThrowRock();
+        }
+    }
+
+    void ThrowRock()
+    {
+        if (Inventory.inventory.HasItem("Rock") && Inventory.inventory.GetRockCount() > 0)
+        {
+            Inventory.inventory.RemoveItem("Rock");
+
+            GameObject thrownRock = Instantiate(rockPrefab, source.position + source.forward * 1f, Quaternion.identity);
+
+            Rigidbody rb = thrownRock.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.isKinematic = false;
+                Vector3 throwDir = (source.forward + source.up * 0.5f).normalized;
+                rb.AddForce(throwDir * throwForce, ForceMode.Impulse);
             }
         }
     }
