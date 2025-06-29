@@ -8,8 +8,10 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject lostMenuUI;
+    public GameObject wonMenuUI;
     public GameObject player;
     private bool lost = false;
+    private bool won = false;
 
     void Awake()
     {
@@ -30,7 +32,7 @@ public class PauseMenu : MonoBehaviour
     }
     void Update()
     {
-        if (lost) return;
+        if (lost || won) return;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
@@ -70,6 +72,18 @@ public class PauseMenu : MonoBehaviour
     {
         lost = true;
         lostMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+
+        player.GetComponent<FirstPersonController>().enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+        public void YouWon()
+    {
+        won = true;
+        wonMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
 

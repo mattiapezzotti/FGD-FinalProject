@@ -6,7 +6,6 @@ public class Inventory : MonoBehaviour
     public static Inventory inventory { get; private set; }
     public List<ItemData> items = new();
     public InventoryUI inventoryUI;
-    private int rockCount;
 
     private int counterRock = 0;
 
@@ -79,10 +78,6 @@ public class Inventory : MonoBehaviour
         return null;
     }
 
-    public void SetRockCount(int count)
-    {
-        rockCount = count;
-    }
     public int GetRockCount()
     {
         return counterRock;

@@ -1,12 +1,16 @@
 using UnityEngine;
 
-public class SoundMaker : MonoBehaviour
+public class RockSound : MonoBehaviour
 {
-    public AudioSource soundSource;
+    private AudioSource soundSource;
     public float soundRange = 10f;
     private bool hasBeenThrown = false;
     private bool hasPlayed = false;
 
+    void Start()
+    {
+        soundSource = GetComponent<AudioSource>();     
+    }
     public void MarkAsThrown()
     {
         hasBeenThrown = true;

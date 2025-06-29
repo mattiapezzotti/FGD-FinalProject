@@ -21,6 +21,8 @@ public class InventoryUI : MonoBehaviour
         foreach (ItemData item in Inventory.inventory.items)
         {
             GameObject obj = Instantiate(itemPrefab, contentPanel);
+            if (item.id == "Rock")
+                item.displayName = "Rock (" + Inventory.inventory.GetRockCount() + ")";
             obj.GetComponent<InventoryItemUI>().SetData(item.icon, item.displayName);
         }
     }

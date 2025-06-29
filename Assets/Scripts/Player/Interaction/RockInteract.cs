@@ -25,6 +25,5 @@ public class RockInteract : MonoBehaviour, IInteractable
         audioSource.PlayPickUp();
         gameObject.SetActive(false);
         Inventory.inventory.AddItem(rockData);
-        Inventory.inventory.SetRockCount(5);
     }
 }

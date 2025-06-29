@@ -9,7 +9,7 @@ public class DoorInteract : MonoBehaviour, IInteractable
     public string keyID;
     private Outline outline;
 
-    private bool attiva = false;
+    private bool isOpen = false;
 
     private AudioSource audioSource;
     public AudioClip doorOpensClip;
@@ -25,11 +25,11 @@ public class DoorInteract : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (attiva) return;
+        if (isOpen) return;
         if (Inventory.inventory.HasItem(keyID))
         {
             audioSource.clip = doorOpensClip;
-            attiva = true;
+            isOpen = true;
             outline.OutlineWidth = 0;
             Inventory.inventory.RemoveItem(keyID);
         }
@@ -53,7 +53,7 @@ public class DoorInteract : MonoBehaviour, IInteractable
 
     void Update()
     {
-        if (!attiva) return;
+        if (!isOpen) return;
 
         transform.rotation = Quaternion.Lerp(transform.rotation, rotazioneFinalePorta, Time.deltaTime * velocità);
     }

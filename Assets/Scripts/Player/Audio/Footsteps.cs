@@ -6,7 +6,7 @@ public class Footsteps : MonoBehaviour
     public AudioClip[] stoneFootstepsClips;
     public AudioClip[] woodFootstepsClips;
     public AudioClip[] outsideFootstepsClips;
-    public SoundMaker soundMaker;
+    public RockSound soundMaker;
     private Ray r;
     private RaycastHit hit;
 

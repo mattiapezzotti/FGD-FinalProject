@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class BoatInteract : MonoBehaviour, IInteractable
 {
     private Outline outline;
+    private 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,7 +14,7 @@ public class BoatInteract : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        SceneManager.LoadScene("MainMenu");
+        PauseMenu.pauseMenu.YouWon();
     }
 
     public void DrawOutline(bool b)
