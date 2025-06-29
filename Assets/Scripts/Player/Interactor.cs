@@ -13,11 +13,17 @@ public class Interactor : MonoBehaviour
     private Ray r;
     private RaycastHit hit;
     private IInteractable lastHit;
-    public TutorialManager tutorialManager;
-    private bool seenTutorial = false;
+    private TutorialManager tutorialManager;
+    private bool seenPickUpTutorial = false;
+    private bool seenRockTutorial = false;
 
     public GameObject rockPrefab;
     public float throwForce = 20f;
+
+    void Start()
+    {
+        tutorialManager = GetComponent<TutorialManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -30,10 +36,10 @@ public class Interactor : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    if (!seenTutorial)
+                    if (!seenPickUpTutorial)
                     {
                         tutorialManager.TriggerAreaStep(3);
-                        seenTutorial = true;
+                        seenPickUpTutorial = true;
                     }
 
                     interacted.Interact();
@@ -67,6 +73,12 @@ public class Interactor : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            if (!seenRockTutorial)
+            {
+                tutorialManager.TriggerAreaStep(4);
+                seenRockTutorial = true;
+            }
+            
             ThrowRock();
         }
     }
@@ -87,7 +99,7 @@ public class Interactor : MonoBehaviour
             if (thrownRock.TryGetComponent<Rigidbody>(out var rb))
             {
                 rb.isKinematic = false;
-                Vector3 throwDir = (source.forward + source.up * 0.5f).normalized;
+                Vector3 throwDir = (source.forward + source.up * 0.2f).normalized;
                 rb.AddForce(throwDir * throwForce, ForceMode.Impulse);
             }
         }

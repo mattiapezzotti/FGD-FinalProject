@@ -13,10 +13,13 @@ public class Markator : MonoBehaviour
     private RaycastHit hit;
     private Animator animator;
     private PlayerSounds playerSounds;
+    private TutorialManager tutorialManager;
+    private bool seenTutorial = false;
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
         playerSounds = GetComponentInChildren<PlayerSounds>();
+        tutorialManager = GetComponent<TutorialManager>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,11 @@ public class Markator : MonoBehaviour
             {
                 if (hit.collider.gameObject.TryGetComponent(out IMarkable interacted))
                 {
+                    if (!seenTutorial)
+                    {
+                        tutorialManager.TriggerAreaStep(5);
+                        seenTutorial = true;
+                    }
                     if (!interacted.IsOnCooldown())
                     {
                         playerSounds.PlayGuardVoiceline();
