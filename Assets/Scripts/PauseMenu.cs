@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject lostMenuUI;
     public GameObject wonMenuUI;
+    public LeaderboardUI leaderboard;
     public GameObject player;
     private bool lost = false;
     private bool won = false;
@@ -80,7 +81,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
     }
 
-        public void YouWon()
+    public void YouWon()
     {
         won = true;
         wonMenuUI.SetActive(true);
@@ -90,6 +91,9 @@ public class PauseMenu : MonoBehaviour
         player.GetComponent<FirstPersonController>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        float currentTime = Time.timeSinceLevelLoad;
+        leaderboard.ShowLeaderboard(currentTime);
     }
 
     public void Restart()
