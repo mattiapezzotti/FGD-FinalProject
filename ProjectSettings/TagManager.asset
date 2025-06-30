@@ -8,6 +8,7 @@ TagManager:
   - WayPoint1
   - WayPoint0
   - Ground
+  - WayPoint2
   layers:
   - Default
   - TransparentFX

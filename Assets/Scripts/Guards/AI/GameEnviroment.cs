@@ -8,7 +8,7 @@ public class GameEnviroment
     private static GameEnviroment instance;
     private Dictionary<int, List<GameObject>> npcWaypoints = new Dictionary<int, List<GameObject>>();
     private Dictionary<int, int> currentWaypointIndices = new Dictionary<int, int>();
-    private const int numNpc = 2; // Modifica questo valore in base al numero di NPC
+    private const int numNpc = 3; // Modifica questo valore in base al numero di NPC
 
     public static GameEnviroment Singleton
     {
