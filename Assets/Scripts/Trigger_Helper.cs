@@ -22,10 +22,10 @@ public class Trigger_Helper : MonoBehaviour
 
     void Update()
     {
-        if (Inventory.inventory.HasItem(keyID))
+        if (Inventory.inventory.HasItem(keyID) && active)
         {
             active = false;
-            objectiveHelper.End(target);
+            objectiveHelper.EndHelper(target);
         }
     }
 }

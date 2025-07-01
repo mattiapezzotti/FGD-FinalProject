@@ -144,7 +144,7 @@ public class FirstPersonController : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
 
         verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -75f, 75f);
+        verticalRotation = Mathf.Clamp(verticalRotation, -48f, 75f);
         cameraHolder.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
         
         Vector3 targetPosition = isCrouching ? crouchingCameraPosition : standingCameraPosition;

@@ -3,19 +3,23 @@ using UnityEngine;
 
 public class ObjectiveHelper : MonoBehaviour
 {
+    private IEnumerator coroutine;
+
 
     public void StartTimer(GameObject target, float time)
     {
-        StartCoroutine(TutorialTimer(target, time));
+        coroutine = TutorialTimer(target, time);
+        StartCoroutine(coroutine);
     }
 
-    public void End(GameObject target)
+    public void EndHelper(GameObject target)
     {
+        StopCoroutine(coroutine);
         Outline outline = target.GetComponent<Outline>();
         outline.enabled = false;
     }
 
-    IEnumerator TutorialTimer(GameObject currentObjective, float time)
+    private IEnumerator TutorialTimer(GameObject currentObjective, float time)
     {
         yield return new WaitForSeconds(time);
         Outline outline = currentObjective.GetComponent<Outline>();
