@@ -52,6 +52,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+        AudioListener.pause = false;
 
         player.GetComponent<FirstPersonController>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
@@ -61,6 +62,7 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
         pauseMenuUI.SetActive(true);
+        AudioListener.pause = true;
         Time.timeScale = 0f;
         GameIsPaused = true;
 
@@ -73,6 +75,7 @@ public class PauseMenu : MonoBehaviour
     {
         lost = true;
         lostMenuUI.SetActive(true);
+        AudioListener.pause = true;
         Time.timeScale = 0f;
         GameIsPaused = true;
 
@@ -85,6 +88,7 @@ public class PauseMenu : MonoBehaviour
     {
         won = true;
         wonMenuUI.SetActive(true);
+        AudioListener.pause = true;
         Time.timeScale = 0f;
         GameIsPaused = true;
 
