@@ -26,6 +26,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
         pauseMenuUI.SetActive(false);
+        AudioListener.pause = false;
 
         player.GetComponent<FirstPersonController>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;

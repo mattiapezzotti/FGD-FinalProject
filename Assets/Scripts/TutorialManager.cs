@@ -1,17 +1,15 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using System.Collections;
 
 public class TutorialManager : MonoBehaviour
 {
     public TextMeshProUGUI tutorialText;
     public GameObject tutorialPanel;
-    public bool active;
-
+    private int active;
     void Start()
     {
-        tutorialPanel.SetActive(active);
+        active = PlayerPrefs.GetInt("ShowTutorial");
+        tutorialPanel.SetActive(active == 1);
         ShowStep(0);
     }
 
@@ -22,7 +20,6 @@ public class TutorialManager : MonoBehaviour
 
     void ShowStep(int i)
     {
-        tutorialPanel.SetActive(true);
         switch (i)
         {
             case 0:
