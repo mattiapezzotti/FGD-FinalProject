@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-//DA MODIFICARE! MODIFICARE LA LOGICA AGGIUNGENDO UNA MAPPA<LISTA, INDEX>
 public class GameEnviroment
 {
     private static GameEnviroment instance;

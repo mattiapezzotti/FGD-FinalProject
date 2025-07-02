@@ -6,11 +6,11 @@ public class AIController : MonoBehaviour
 
     private NavMeshAgent agent;
     private Animator anim;
-    public Transform player; // Reference to the player Transform
+    public Transform player;
     private State state;
     public AudioSource audioSource;
     public AudioClip[] confusedLinesClips;
-    public AudioClip[] alertLinesClips; // Lines to play when the NPC is alerted
+    public AudioClip[] alertLinesClips;
     public int npcNum; // NPC number to differentiate between different NPCs
 
 
@@ -57,15 +57,13 @@ public class AIController : MonoBehaviour
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        state = new PatrolState(this.gameObject, player, agent, anim, npcNum);//da aggiungere anim
+        state = new PatrolState(this.gameObject, player, agent, anim, npcNum);
     }
 
-    // Update is called once per frame
     void Update()
     {
         state = state.Process();

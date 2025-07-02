@@ -4,28 +4,26 @@ using UnityEngine.AI;
 public class FollowState : State
 {
     bool confused = false;
-    private float idleDuration = 1f; // Durata in secondi
+    private float idleDuration = 1f;
     private float idleTimer = 0f;
 
     public FollowState(GameObject npc, Transform player, NavMeshAgent agent, Animator anim, int npcNum)
         : base(npc, player, agent, anim, npcNum)
     {
         currentState = STATE.CHASE;
-        // Set the chase speed for the NPC
         agent.speed = chaseSpeed;
         agent.isStopped = false;
     }
 
     public override void Enter()
     {
-        // Debug.Log("Entering FollowState: " + npc.name);
         anim.SetTrigger("IsChasing");
         base.Enter();
         agent.SetDestination(player.position);
 
-        // Attiva l'ExclamationMark se presente tra i figli
+        // Attiva l'ExclamationMark
+        // Disattiva il QuestionMark
         Transform exclamation = npc.transform.Find("ExclamationMark");
-        // Se il QuestionMark � attivo lo disattiva
         Transform question = npc.transform.Find("QuestionMark");
         if (exclamation != null)
             exclamation.gameObject.SetActive(true);
@@ -62,7 +60,7 @@ public class FollowState : State
             if (distanceToPlayer < 1.35f) // Soglia di cattura
             {
                 PauseMenu.pauseMenu.YouLost();
-                agent.isStopped = true; // Ferma la guardia
+                agent.isStopped = true;
                 return;
             }
         }
@@ -91,7 +89,6 @@ public class FollowState : State
 
     public override void Exit()
     {
-        // Disattiva l'ExclamationMark se presente tra i figli
         Transform exclamation = npc.transform.Find("ExclamationMark");
         if (exclamation != null)
             exclamation.gameObject.SetActive(false);

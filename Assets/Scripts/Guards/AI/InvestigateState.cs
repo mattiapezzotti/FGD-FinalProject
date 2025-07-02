@@ -20,8 +20,6 @@ public class InvestigateState : State
 
     public override void Enter()
     {
-        // Debug.Log("Entering InvestigateState: " + npc.name);
-        
         agent.ResetPath();
         base.Enter();
         confused = true;
@@ -51,7 +49,7 @@ public class InvestigateState : State
         }
 
 
-        if (confused) 
+        if (confused)
         {
             idleTimer += Time.deltaTime;
             anim.SetTrigger("IsIdle");
@@ -61,7 +59,7 @@ public class InvestigateState : State
                 confused = false; // Reset the confused state after idle duration
             }
         }
-        
+
         if (CanSeePlayer())
         {
             // If the NPC can see the player, switch to the follow state
@@ -72,19 +70,31 @@ public class InvestigateState : State
         {
             // Check if the sound position is valid
             NavMeshHit hit;
-            if (NavMesh.SamplePosition(soundPosition, out hit, 3.0f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(soundPosition, out hit, 30.0f, NavMesh.AllAreas))
             {
-                agent.SetDestination(hit.position);
+                // Controlla se il punto trovato è raggiungibile dalla posizione attuale dell'agente
+                NavMeshPath path = new NavMeshPath();
+                if (agent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
+                {
+                    agent.SetDestination(hit.position);
+                    anim.ResetTrigger("IsIdle");
+                    anim.SetTrigger("IsPatrolling");
+                }
+                else
+                {
+                    // Se non è raggiungibile, torna all'IdleState
+                    nextState = new IdleState(npc, player, agent, anim, npcNum);
+                    stage = EVENT.EXIT;
+                    return;
+                }
             }
-            anim.ResetTrigger("IsIdle");
-            anim.SetTrigger("IsPatrolling");
-        }
-        if (agent.hasPath && agent.remainingDistance < 0.1f)
-        {
-            nextState = new IdleState(npc, player, agent, anim, npcNum, true);
-            stage = EVENT.EXIT;
-        }
+            if (agent.hasPath && agent.remainingDistance < 0.1f)
+            {
+                nextState = new IdleState(npc, player, agent, anim, npcNum, true);
+                stage = EVENT.EXIT;
+            }
 
+        }
     }
     public override void Exit()
     {

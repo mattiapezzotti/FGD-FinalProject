@@ -75,12 +75,7 @@ public class State
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    //Debug.Log($"Guard {npcNum} can see player at position {player.position}");
                     return true;
-                }
-                else
-                {
-                    //Debug.Log($"Guard {npcNum} cannot see player: obstacle '{hit.collider.name}' in the way");
                 }
             }
         }

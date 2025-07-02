@@ -16,7 +16,6 @@ public class IdleState : State
 
     public override void Enter()
     {
-        // Debug.Log("Entering IdleState: " + npc.name);
         anim.SetTrigger("IsIdle");
         idleTimer = 0f; // Reset del timer ogni volta che si entra nello stato
         base.Enter();
@@ -38,12 +37,8 @@ public class IdleState : State
             return;
         }
         
-
-        // Dopo idleDuration secondi, puoi aggiungere qui la logica per cambiare stato
         nextState = new PatrolState(npc, player, agent, anim, npcNum, goToNearestWP);
         stage = EVENT.EXIT;
-
-        
     }
 
     public override void Exit()
